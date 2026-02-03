@@ -901,6 +901,160 @@
     </div>
 
     <script>
+        // Create audio context for luxury sound effects
+        let audioContext;
+        let gainNode;
+
+        function initAudio() {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            gainNode = audioContext.createGain();
+            gainNode.connect(audioContext.destination);
+        }
+
+        // Play elegant chime sound
+        function playChime(frequency, duration, delay = 0) {
+            setTimeout(() => {
+                if (!audioContext) initAudio();
+                
+                const oscillator = audioContext.createOscillator();
+                const envelope = audioContext.createGain();
+                
+                oscillator.connect(envelope);
+                envelope.connect(gainNode);
+                
+                oscillator.frequency.value = frequency;
+                oscillator.type = 'sine';
+                
+                const now = audioContext.currentTime;
+                envelope.gain.setValueAtTime(0, now);
+                envelope.gain.linearRampToValueAtTime(0.15, now + 0.01);
+                envelope.gain.exponentialRampToValueAtTime(0.01, now + duration);
+                
+                oscillator.start(now);
+                oscillator.stop(now + duration);
+            }, delay);
+        }
+
+        // Play soft whoosh sound for bag unfold
+        function playWhoosh(delay = 0) {
+            setTimeout(() => {
+                if (!audioContext) initAudio();
+                
+                const bufferSize = audioContext.sampleRate * 0.8;
+                const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+                const data = buffer.getChannelData(0);
+                
+                for (let i = 0; i < bufferSize; i++) {
+                    const envelope = Math.exp(-i / (bufferSize * 0.3));
+                    data[i] = (Math.random() * 2 - 1) * envelope * 0.1;
+                }
+                
+                const noise = audioContext.createBufferSource();
+                const filter = audioContext.createBiquadFilter();
+                const envelope = audioContext.createGain();
+                
+                noise.buffer = buffer;
+                filter.type = 'lowpass';
+                filter.frequency.value = 600;
+                
+                noise.connect(filter);
+                filter.connect(envelope);
+                envelope.connect(gainNode);
+                
+                const now = audioContext.currentTime;
+                envelope.gain.setValueAtTime(0, now);
+                envelope.gain.linearRampToValueAtTime(0.08, now + 0.2);
+                envelope.gain.exponentialRampToValueAtTime(0.01, now + 0.8);
+                
+                noise.start(now);
+                noise.stop(now + 0.8);
+            }, delay);
+        }
+
+        // Play letter reveal sound
+        function playLetterSound(pitch, delay = 0) {
+            setTimeout(() => {
+                if (!audioContext) initAudio();
+                
+                const oscillator = audioContext.createOscillator();
+                const envelope = audioContext.createGain();
+                
+                oscillator.connect(envelope);
+                envelope.connect(gainNode);
+                
+                oscillator.frequency.value = pitch;
+                oscillator.type = 'triangle';
+                
+                const now = audioContext.currentTime;
+                envelope.gain.setValueAtTime(0, now);
+                envelope.gain.linearRampToValueAtTime(0.06, now + 0.01);
+                envelope.gain.exponentialRampToValueAtTime(0.01, now + 0.15);
+                
+                oscillator.start(now);
+                oscillator.stop(now + 0.15);
+            }, delay);
+        }
+
+        // Main audio sequence
+        function playAnimationAudio() {
+            // Bag unfold whoosh
+            playWhoosh(0);
+            
+            // Bag body reveal - low chime
+            playChime(261.63, 1.2, 800); // C4
+            
+            // Handle drawing - mid chime
+            playChime(329.63, 1.0, 1200); // E4
+            
+            // Details appearing - soft chimes
+            playChime(392.00, 0.8, 2000); // G4
+            playChime(523.25, 0.6, 2400); // C5
+            
+            // Letter reveals - ascending tones for each letter
+            const letterPitches = [
+                523.25, // C5 - T
+                554.37, // C#5 - e
+                587.33, // D5 - m
+                622.25, // D#5 - i
+                659.25, // E5 - '
+                698.46, // F5 - s
+                739.99, // F#5 - (space)
+                783.99, // G5 - C
+                830.61, // G#5 - o
+                880.00, // A5 - l
+                932.33, // A#5 - l
+                987.77, // B5 - e
+                1046.50, // C6 - c
+                1108.73, // C#6 - t
+                1174.66, // D6 - i
+                1244.51, // D#6 - o
+                1318.51  // E6 - n
+            ];
+            
+            letterPitches.forEach((pitch, index) => {
+                playLetterSound(pitch, 3000 + (index * 80));
+            });
+            
+            // Final flourish - soft chord
+            playChime(523.25, 1.5, 5200); // C5
+            playChime(659.25, 1.5, 5250); // E5
+            playChime(783.99, 1.5, 5300); // G5
+        }
+
+        // Start audio on page load
+        window.addEventListener('load', () => {
+            // Initialize audio context on first user interaction (required by browsers)
+            document.addEventListener('click', function initOnClick() {
+                initAudio();
+                document.removeEventListener('click', initOnClick);
+            }, { once: true });
+            
+            // Play audio sequence
+            setTimeout(() => {
+                playAnimationAudio();
+            }, 100);
+        });
+
         function replayAnimation() {
             // Get the SVG element
             const svg = document.querySelector('.animated-logo');
@@ -920,6 +1074,9 @@
             // Restart button animation
             setTimeout(() => {
                 replayBtn.style.animation = 'fadeIn 0.8s ease forwards 6s';
+                
+                // Replay audio
+                playAnimationAudio();
             }, 10);
         }
 
