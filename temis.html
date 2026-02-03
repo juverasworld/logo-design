@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temi's Collection - Animated Brand Identity</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,600;1,6..96,400;1,6..96,500&family=Cinzel:wght@400;500;600&family=Oranienbaum&family=Yeseva+One&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Abhaya+Libre:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --luxury-black: #0d0d0d;
+            --luxury-charcoal: #2a2a2a;
+            --luxury-warm-white: #f8f6f3;
+            --luxury-taupe: #c9b8a3;
+            --luxury-gold: #b8956a;
+            --luxury-deep-green: #1a2d23;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--luxury-warm-white);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Cormorant Garamond', serif;
+        }
+
+        /* Minimal textured background */
+        body::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.02) 1px, transparent 0);
+            background-size: 40px 40px;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        /* Hero page that appears after animation */
+        .hero-page {
+            position: fixed;
+            inset: 0;
+            background: var(--luxury-warm-white);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 100;
+            animation: heroFadeIn 2s cubic-bezier(0.45, 0, 0.15, 1) forwards 7s;
+            padding: 40px;
+        }
+
+        @keyframes heroFadeIn {
+            0% {
+                opacity: 0;
+                pointer-events: none;
+            }
+            100% {
+                opacity: 1;
+                pointer-events: all;
+            }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .hero-welcome {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            font-weight: 300;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: #8b7355;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: heroTextReveal 1.5s cubic-bezier(0.45, 0, 0.15, 1) forwards 8s;
+        }
+
+        @keyframes heroTextReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: 72px;
+            font-weight: 500;
+            color: var(--luxury-black);
+            margin-bottom: 40px;
+            line-height: 1.2;
+            opacity: 0;
+            animation: heroTitleReveal 1.8s cubic-bezier(0.45, 0, 0.15, 1) forwards 8.5s;
+        }
+
+        @keyframes heroTitleReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+                letter-spacing: 0.2em;
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+                letter-spacing: 0.05em;
+            }
+        }
+
+        .hero-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            font-style: italic;
+            font-weight: 300;
+            color: var(--luxury-charcoal);
+            margin-bottom: 60px;
+            opacity: 0;
+            animation: heroTextReveal 1.5s cubic-bezier(0.45, 0, 0.15, 1) forwards 9.5s;
+        }
+
+        .hero-divider {
+            width: 120px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--luxury-gold), transparent);
+            margin: 0 auto 50px;
+            opacity: 0;
+            animation: dividerExpand 1.2s cubic-bezier(0.45, 0, 0.15, 1) forwards 10s;
+        }
+
+        @keyframes dividerExpand {
+            0% {
+                opacity: 0;
+                transform: scaleX(0);
+            }
+            100% {
+                opacity: 1;
+                transform: scaleX(1);
+            }
+        }
+
+        .hero-description {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            font-weight: 400;
+            line-height: 1.8;
+            color: #5a5a5a;
+            max-width: 600px;
+            margin: 0 auto 50px;
+            opacity: 0;
+            animation: heroTextReveal 1.5s cubic-bezier(0.45, 0, 0.15, 1) forwards 10.5s;
+        }
+
+        .hero-cta {
+            opacity: 0;
+            animation: heroTextReveal 1.5s cubic-bezier(0.45, 0, 0.15, 1) forwards 11s;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 50px;
+            background: var(--luxury-charcoal);
+            color: var(--luxury-warm-white);
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.45, 0, 0.15, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--luxury-gold);
+            transition: left 0.5s cubic-bezier(0.45, 0, 0.15, 1);
+            z-index: -1;
+        }
+
+        .cta-button:hover {
+            color: var(--luxury-black);
+        }
+
+        .cta-button:hover::before {
+            left: 0;
+        }
+
+        /* Decorative elements on hero page */
+        .hero-ornament {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 1px solid var(--luxury-gold);
+            opacity: 0.2;
+        }
+
+        .hero-ornament-tl {
+            top: 60px;
+            left: 60px;
+            border-right: none;
+            border-bottom: none;
+            animation: ornamentAppear 1.5s ease forwards 11.5s;
+        }
+
+        .hero-ornament-br {
+            bottom: 60px;
+            right: 60px;
+            border-left: none;
+            border-top: none;
+            animation: ornamentAppear 1.5s ease forwards 11.5s;
+        }
+
+        @keyframes ornamentAppear {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 0.2;
+                transform: scale(1);
+            }
+        }
+
+        /* Logo fades out when hero appears */
+        .logo-stage {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            padding: 80px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            animation: logoFadeOut 2s cubic-bezier(0.45, 0, 0.15, 1) forwards 7s;
+        }
+
+        @keyframes logoFadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        /* Main SVG container */
+        .animated-logo {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        /* SVG Animation Classes */
+        
+        /* Bag flap unfold animations - INFINITE LOOP */
+        .bag-flap-left {
+            transform-origin: center;
+            transform: rotateY(0deg) translateX(0);
+            opacity: 1;
+            animation: unfoldLeft 1.6s cubic-bezier(0.45, 0, 0.15, 1) forwards, 
+                       resetFlapLeft 0s 30s infinite;
+        }
+
+        .bag-flap-right {
+            transform-origin: center;
+            transform: rotateY(0deg) translateX(0);
+            opacity: 1;
+            animation: unfoldRight 1.6s cubic-bezier(0.45, 0, 0.15, 1) forwards,
+                       resetFlapRight 0s 30s infinite;
+        }
+
+        @keyframes resetFlapLeft {
+            to {
+                transform: rotateY(0deg) translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes resetFlapRight {
+            to {
+                transform: rotateY(0deg) translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes unfoldLeft {
+            0% {
+                transform: rotateY(0deg) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: rotateY(-85deg) translateX(-40px);
+                opacity: 0.3;
+            }
+        }
+
+        @keyframes unfoldRight {
+            0% {
+                transform: rotateY(0deg) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: rotateY(85deg) translateX(40px);
+                opacity: 0.3;
+            }
+        }
+
+        /* Bag body reveal - INFINITE LOOP */
+        .bag-body {
+            opacity: 0;
+            transform: scale(0.92);
+            animation: fadeInScale 1.2s cubic-bezier(0.45, 0, 0.15, 1) forwards 0.8s,
+                       resetBagBody 0s 30s infinite;
+        }
+
+        @keyframes resetBagBody {
+            to {
+                opacity: 0;
+                transform: scale(0.92);
+            }
+        }
+
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.92);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Handle reveal - INFINITE LOOP */
+        .bag-handle {
+            opacity: 0;
+            stroke-dasharray: 400;
+            stroke-dashoffset: 400;
+            animation: drawHandle 1.4s cubic-bezier(0.45, 0, 0.15, 1) forwards 1.2s,
+                       resetHandle 0s 30s infinite;
+        }
+
+        @keyframes resetHandle {
+            to {
+                opacity: 0;
+                stroke-dashoffset: 400;
+            }
+        }
+
+        @keyframes drawHandle {
+            0% {
+                opacity: 0;
+                stroke-dashoffset: 400;
+            }
+            20% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 1;
+                stroke-dashoffset: 0;
+            }
+        }
+
+        /* Detail lines - INFINITE LOOP */
+        .detail-line {
+            opacity: 0;
+            stroke-dasharray: 300;
+            stroke-dashoffset: 300;
+            animation: drawDetail 1s cubic-bezier(0.45, 0, 0.15, 1) forwards 2s,
+                       resetDetail 0s 30s infinite;
+        }
+
+        @keyframes resetDetail {
+            to {
+                opacity: 0;
+                stroke-dashoffset: 300;
+            }
+        }
+
+        @keyframes drawDetail {
+            0% {
+                opacity: 0;
+                stroke-dashoffset: 300;
+            }
+            30% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 1;
+                stroke-dashoffset: 0;
+            }
+        }
+
+        /* Hardware accent - INFINITE LOOP */
+        .hardware-accent {
+            opacity: 0;
+            animation: fadeIn 0.6s ease forwards 2.4s,
+                       resetHardware 0s 30s infinite;
+        }
+
+        @keyframes resetHardware {
+            to { opacity: 0; }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        /* Text reveal animations - Individual letters - INFINITE LOOP */
+        .letter {
+            opacity: 0;
+            transform: translateY(25px) scale(0.9);
+            animation: letterReveal 0.6s cubic-bezier(0.45, 0, 0.15, 1) forwards,
+                       resetLetter 0s 30s infinite;
+        }
+
+        /* Stagger each letter with increasing delay */
+        .letter-1 { animation-delay: 3.0s, 30s; }
+        .letter-2 { animation-delay: 3.08s, 30s; }
+        .letter-3 { animation-delay: 3.16s, 30s; }
+        .letter-4 { animation-delay: 3.24s, 30s; }
+        .letter-5 { animation-delay: 3.32s, 30s; }
+        .letter-6 { animation-delay: 3.40s, 30s; }
+        .letter-7 { animation-delay: 3.52s, 30s; }
+        .letter-8 { animation-delay: 3.60s, 30s; }
+        .letter-9 { animation-delay: 3.68s, 30s; }
+        .letter-10 { animation-delay: 3.76s, 30s; }
+        .letter-11 { animation-delay: 3.84s, 30s; }
+        .letter-12 { animation-delay: 3.92s, 30s; }
+        .letter-13 { animation-delay: 4.00s, 30s; }
+        .letter-14 { animation-delay: 4.08s, 30s; }
+        .letter-15 { animation-delay: 4.16s, 30s; }
+        .letter-16 { animation-delay: 4.24s, 30s; }
+
+        @keyframes resetLetter {
+            to {
+                opacity: 0;
+                transform: translateY(25px) scale(0.9);
+            }
+        }
+
+        @keyframes letterReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(25px) scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .tagline-text {
+            opacity: 0;
+            transform: translateY(10px);
+            animation: taglineReveal 1.2s cubic-bezier(0.45, 0, 0.15, 1) forwards 4.5s,
+                       resetTagline 0s 30s infinite;
+        }
+
+        @keyframes resetTagline {
+            to {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+        }
+
+        @keyframes taglineReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 0.7;
+                transform: translateY(0);
+            }
+        }
+
+        /* Underline accent - INFINITE LOOP */
+        .accent-line {
+            stroke-dasharray: 200;
+            stroke-dashoffset: 200;
+            animation: drawAccentLine 1s cubic-bezier(0.45, 0, 0.15, 1) forwards 5.2s,
+                       resetAccentLine 0s 30s infinite;
+        }
+
+        @keyframes resetAccentLine {
+            to { stroke-dashoffset: 200; }
+        }
+
+        @keyframes drawAccentLine {
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* Replay button */
+        .replay-control {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            display: none; /* Hidden since animation loops automatically */
+        }
+
+        .replay-btn {
+            padding: 12px 36px;
+            background: transparent;
+            color: var(--luxury-charcoal);
+            border: 1px solid var(--luxury-charcoal);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.45, 0, 0.15, 1);
+            position: relative;
+            overflow: hidden;
+            font-weight: 500;
+        }
+
+        .replay-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--luxury-charcoal);
+            transition: left 0.5s cubic-bezier(0.45, 0, 0.15, 1);
+            z-index: -1;
+        }
+
+        .replay-btn:hover {
+            color: var(--luxury-warm-white);
+        }
+
+        .replay-btn:hover::before {
+            left: 0;
+        }
+
+        /* Shadow definitions */
+        .soft-shadow {
+            filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.08));
+        }
+
+        .text-shadow {
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.04));
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .logo-stage {
+                padding: 60px 20px;
+            }
+            .animated-logo {
+                max-width: 400px;
+            }
+            
+            .hero-title {
+                font-size: 48px;
+            }
+            
+            .hero-tagline {
+                font-size: 22px;
+            }
+            
+            .hero-description {
+                font-size: 16px;
+                padding: 0 20px;
+            }
+            
+            .hero-ornament {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .hero-ornament-tl {
+                top: 30px;
+                left: 30px;
+            }
+            
+            .hero-ornament-br {
+                bottom: 30px;
+                right: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-stage">
+        <svg class="animated-logo" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <!-- Gradients for depth -->
+                <linearGradient id="bagGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" style="stop-color:#2d3d35;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#1a2d23;stop-opacity:1" />
+                </linearGradient>
+                
+                <linearGradient id="flapGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" style="stop-color:#3d4d45;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#2d3d35;stop-opacity:1" />
+                </linearGradient>
+
+                <linearGradient id="hardwareGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#d4c5b0;stop-opacity:1" />
+                    <stop offset="50%" style="stop-color:#b8956a;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#a68558;stop-opacity:1" />
+                </linearGradient>
+
+                <!-- Subtle shadow filter -->
+                <filter id="subtleShadow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
+                    <feOffset dx="0" dy="6" result="offsetblur"/>
+                    <feComponentTransfer>
+                        <feFuncA type="linear" slope="0.15"/>
+                    </feComponentTransfer>
+                    <feMerge>
+                        <feMergeNode/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+            </defs>
+
+            <!-- Main bag composition -->
+            <g class="soft-shadow" filter="url(#subtleShadow)">
+                
+                <!-- Left flap (unfolds) -->
+                <g class="bag-flap-left">
+                    <path d="M 180 120 L 160 240 Q 160 250 170 252 L 240 252 L 250 120 Z" 
+                          fill="url(#flapGradient)" 
+                          stroke="#1a1a1a" 
+                          stroke-width="1.5"/>
+                    <line x1="185" y1="130" x2="175" y2="235" 
+                          stroke="#2a2a2a" 
+                          stroke-width="0.5" 
+                          opacity="0.3"/>
+                </g>
+
+                <!-- Right flap (unfolds) -->
+                <g class="bag-flap-right">
+                    <path d="M 420 120 L 440 240 Q 440 250 430 252 L 360 252 L 350 120 Z" 
+                          fill="url(#flapGradient)" 
+                          stroke="#1a1a1a" 
+                          stroke-width="1.5"/>
+                    <line x1="415" y1="130" x2="425" y2="235" 
+                          stroke="#2a2a2a" 
+                          stroke-width="0.5" 
+                          opacity="0.3"/>
+                </g>
+
+                <!-- Main bag body (revealed after flaps open) -->
+                <g class="bag-body">
+                    <!-- Body -->
+                    <rect x="220" y="120" width="160" height="132" 
+                          fill="url(#bagGradient)" 
+                          stroke="#1a1a1a" 
+                          stroke-width="1.5"/>
+                    
+                    <!-- Subtle center seam -->
+                    <line x1="300" y1="120" x2="300" y2="252" 
+                          stroke="#1a1a1a" 
+                          stroke-width="1" 
+                          opacity="0.3"/>
+                    
+                    <!-- Side panel shadows for depth -->
+                    <rect x="222" y="122" width="8" height="128" 
+                          fill="#0d0d0d" 
+                          opacity="0.15"/>
+                    <rect x="370" y="122" width="8" height="128" 
+                          fill="#0d0d0d" 
+                          opacity="0.15"/>
+                </g>
+
+                <!-- Handle (draws after bag body) -->
+                <g class="bag-handle">
+                    <path d="M 250 120 Q 250 80 280 72 Q 300 68 320 72 Q 350 80 350 120" 
+                          fill="none" 
+                          stroke="#1a1a1a" 
+                          stroke-width="3.5" 
+                          stroke-linecap="round"/>
+                    <path d="M 252 120 Q 252 82 280 74 Q 300 70 320 74 Q 348 82 348 120" 
+                          fill="none" 
+                          stroke="#2d3d35" 
+                          stroke-width="2" 
+                          stroke-linecap="round"/>
+                </g>
+
+                <!-- Refined detail lines -->
+                <line class="detail-line" x1="230" y1="140" x2="370" y2="140" 
+                      stroke="#3d4d45" 
+                      stroke-width="0.8"/>
+                <line class="detail-line" x1="228" y1="230" x2="372" y2="230" 
+                      stroke="#3d4d45" 
+                      stroke-width="0.8"/>
+
+                <!-- Minimal hardware accent -->
+                <g class="hardware-accent">
+                    <rect x="285" y="175" width="30" height="20" rx="2" 
+                          fill="url(#hardwareGradient)" 
+                          stroke="#8a7558" 
+                          stroke-width="0.8"/>
+                    <circle cx="300" cy="185" r="3.5" 
+                            fill="#6a5848" 
+                            opacity="0.6"/>
+                </g>
+            </g>
+
+            <!-- Brand text integration - Letters animate in one by one -->
+            <g class="brand-text text-shadow">
+                <!-- Each letter as separate element for individual animation -->
+                <text class="letter letter-1" x="165" y="310" 
+                      font-family="'Cinzel', serif" 
+                      font-size="36" 
+                      text-anchor="middle" 
+                      fill="#1a1a1a"
+                      letter-spacing="1">T</text>
+                
+                <text class="letter letter-2" x="188" y="310" 
+                      font-family="'Cinzel', serif" 
+                      font-size="36" 
+                      text-anchor="middle" 
+                      fill="#1a1a1a"
+                      letter-spacing="1">e</text>
+                
+                <text class="letter letter-3" x="208" y="310" 
+                      font-family="'Cinzel', serif" 
+                      font-size="36" 
+                      text-anchor="middle" 
+                      fill="#1a1a1a"
+                      letter-spacing="1">m</text>
+                
+                <text class="letter letter-4" x="237" y="310" 
+                      font-family="'Cinzel', serif" 
+                      font-size="36" 
+                      text-anchor="middle" 
+                      fill="#1a1a1a"
+                      letter-spacing="1">i</text>
+                
+                <text class="letter letter-5" x="252" y="310" 
+                      font-family="'Cinzel', serif" 
+                      font-size="36" 
+                      text-anchor="middle" 
+                      fill="#1a1a1a"
+                      letter-spacing="1">'</text>
+                
+                <text class="letter letter-6" x="265" y="310" 
+                      font-family="'Cinzel', serif" 
+                      font-size="36" 
+                      text-anchor="middle" 
+                      fill="#1a1a1a"
+                      letter-spacing="1">s</text>
+                
+                <!-- Space -->
+                
+                <text class="letter letter-7" x="300" y="310" 
+                      font-family="'Cinzel', serif" 
+                      font-size="36" 
+                      text-anchor="middle" 
+                      fill="#1a1a1a"
+                      letter-spacing="1">C</text>
+                
+                <text class="letter letter-8" x="327" y="310" 
+                      font-family="'Cinzel', serif" 
+                      font-size="36" 
+                      text-anchor="middle" 
+                      fill="#1a1a1a"
+                      letter-spacing="1">o</text>
+                
+                <text class="letter letter-9" x="352" y="310" 
+                      font-family="'Cinzel', serif" 
+                      font-size="36" 
+                      text-anchor="middle" 
+                      fill="#1a1a1a"
+                      letter-spacing="1">l</text>
+                
+                <text class="letter letter-10" x="368" y="310" 
+                      font-family="'Cinzel', serif" 
+                      font-size="36" 
+                      text-anchor="middle" 
+                      fill="#1a1a1a"
+                      letter-spacing="1">l</text>
+                
+                <text class="letter letter-11" x="384" y="310" 
+                      font-family="'Cinzel', serif" 
+                      font-size="36" 
+                      text-anchor="middle" 
+                      fill="#1a1a1a"
+                      letter-spacing="1">e</text>
+                
+                <text class="letter letter-12" x="407" y="310" 
+                      font-family="'Cinzel', serif" 
+                      font-size="36" 
+                      text-anchor="middle" 
+                      fill="#1a1a1a"
+                      letter-spacing="1">c</text>
+                
+                <text class="letter letter-13" x="428" y="310" 
+                      font-family="'Cinzel', serif" 
+                      font-size="36" 
+                      text-anchor="middle" 
+                      fill="#1a1a1a"
+                      letter-spacing="1">t</text>
+                
+                <text class="letter letter-14" x="444" y="310" 
+                      font-family="'Cinzel', serif" 
+                      font-size="36" 
+                      text-anchor="middle" 
+                      fill="#1a1a1a"
+                      letter-spacing="1">i</text>
+                
+                <text class="letter letter-15" x="459" y="310" 
+                      font-family="'Cinzel', serif" 
+                      font-size="36" 
+                      text-anchor="middle" 
+                      fill="#1a1a1a"
+                      letter-spacing="1">o</text>
+                
+                <text class="letter letter-16" x="484" y="310" 
+                      font-family="'Cinzel', serif" 
+                      font-size="36" 
+                      text-anchor="middle" 
+                      fill="#1a1a1a"
+                      letter-spacing="1">n</text>
+            </g>
+
+            <!-- Refined tagline -->
+            <g class="tagline-text text-shadow">
+                <text x="300" y="335" 
+                      font-family="'Cormorant Garamond', serif" 
+                      font-size="10" 
+                      text-anchor="middle" 
+                      fill="#4a4a4a"
+                      letter-spacing="5"
+                      font-weight="300">
+                    HANDCRAFTED LUXURY BAGS
+                </text>
+            </g>
+
+            <!-- Minimal accent line -->
+            <line class="accent-line" 
+                  x1="260" y1="295" x2="340" y2="295" 
+                  stroke="#b8956a" 
+                  stroke-width="0.8"/>
+        </svg>
+
+        <div class="replay-control">
+            <button class="replay-btn" onclick="replayAnimation()">Replay</button>
+        </div>
+    </div>
+
+    <!-- Hero Page -->
+    <div class="hero-page">
+        <div class="hero-ornament hero-ornament-tl"></div>
+        <div class="hero-ornament hero-ornament-br"></div>
+        
+        <div class="hero-content">
+            <div class="hero-welcome">Welcome To</div>
+            
+            <h1 class="hero-title">Temi's Collection</h1>
+            
+            <div class="hero-divider"></div>
+            
+            <p class="hero-tagline">Let us be your valued companion in luxury</p>
+            
+            <p class="hero-description">
+                Where timeless craftsmanship meets contemporary elegance. 
+                Each piece in our collection is meticulously handcrafted, 
+                telling a story of artisanal excellence and refined taste.
+            </p>
+            
+            <div class="hero-cta">
+                <button class="cta-button" onclick="window.location.reload()">
+                    Explore Collection
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function replayAnimation() {
+            // Get the SVG element
+            const svg = document.querySelector('.animated-logo');
+            const replayBtn = document.querySelector('.replay-control');
+            
+            // Clone and replace to reset all CSS animations
+            const newSvg = svg.cloneNode(true);
+            svg.parentNode.replaceChild(newSvg, svg);
+            
+            // Reset button
+            replayBtn.style.animation = 'none';
+            replayBtn.style.opacity = '0';
+            
+            // Force reflow
+            void newSvg.offsetWidth;
+            
+            // Restart button animation
+            setTimeout(() => {
+                replayBtn.style.animation = 'fadeIn 0.8s ease forwards 6s';
+            }, 10);
+        }
+
+        // Optional: Prevent accidental text selection during animation
+        document.addEventListener('selectstart', function(e) {
+            if (e.target.closest('.logo-stage')) {
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
