@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAUGETSHOES - Animated Brand Identity</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Bodoni+Moda:wght@400;500;600&family=Cinzel:wght@400;500;600&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --luxury-black: #0d0d0d;
+            --luxury-charcoal: #1a1a1a;
+            --luxury-white: #ffffff;
+            --luxury-gray: #2a2a2a;
+            --luxury-accent: #3a3a3a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--luxury-black);
+            position: relative;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Subtle texture overlay */
+        body::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.02) 1px, transparent 0);
+            background-size: 40px 40px;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        /* Hero page that appears after animation */
+        .hero-page {
+            position: fixed;
+            inset: 0;
+            background: var(--luxury-black);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            z-index: 100;
+            animation: heroFadeIn 2s cubic-bezier(0.45, 0, 0.15, 1) forwards 7s;
+            padding: 40px;
+        }
+
+        @keyframes heroFadeIn {
+            0% {
+                opacity: 0;
+                pointer-events: none;
+            }
+            100% {
+                opacity: 1;
+                pointer-events: all;
+            }
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: center;
+        }
+
+        .hero-welcome {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 300;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: #666;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: heroTextReveal 1.5s cubic-bezier(0.45, 0, 0.15, 1) forwards 8s;
+        }
+
+        @keyframes heroTextReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-title {
+            font-family: 'Cinzel', serif;
+            font-size: 72px;
+            font-weight: 600;
+            color: var(--luxury-white);
+            margin-bottom: 40px;
+            line-height: 1.2;
+            letter-spacing: 0.1em;
+            opacity: 0;
+            animation: heroTitleReveal 1.8s cubic-bezier(0.45, 0, 0.15, 1) forwards 8.5s;
+        }
+
+        @keyframes heroTitleReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-tagline {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-style: italic;
+            font-weight: 400;
+            color: #ccc;
+            margin-bottom: 60px;
+            opacity: 0;
+            animation: heroTextReveal 1.5s cubic-bezier(0.45, 0, 0.15, 1) forwards 9.5s;
+        }
+
+        .hero-divider {
+            width: 120px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--luxury-white), transparent);
+            margin: 0 auto 50px;
+            opacity: 0;
+            animation: dividerExpand 1.2s cubic-bezier(0.45, 0, 0.15, 1) forwards 10s;
+        }
+
+        @keyframes dividerExpand {
+            0% {
+                opacity: 0;
+                transform: scaleX(0);
+            }
+            100% {
+                opacity: 0.5;
+                transform: scaleX(1);
+            }
+        }
+
+        .hero-description {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+            font-weight: 300;
+            line-height: 1.8;
+            color: #999;
+            max-width: 600px;
+            margin: 0 auto 50px;
+            opacity: 0;
+            animation: heroTextReveal 1.5s cubic-bezier(0.45, 0, 0.15, 1) forwards 10.5s;
+        }
+
+        .hero-cta {
+            opacity: 0;
+            animation: heroTextReveal 1.5s cubic-bezier(0.45, 0, 0.15, 1) forwards 11s;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 50px;
+            background: var(--luxury-white);
+            color: var(--luxury-black);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.5s cubic-bezier(0.45, 0, 0.15, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--luxury-gray);
+            transition: left 0.5s cubic-bezier(0.45, 0, 0.15, 1);
+            z-index: -1;
+        }
+
+        .cta-button:hover {
+            color: var(--luxury-white);
+        }
+
+        .cta-button:hover::before {
+            left: 0;
+        }
+
+        /* Decorative corner elements */
+        .hero-ornament {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .hero-ornament-tl {
+            top: 60px;
+            left: 60px;
+            border-right: none;
+            border-bottom: none;
+            animation: ornamentAppear 1.5s ease forwards 11.5s;
+        }
+
+        .hero-ornament-br {
+            bottom: 60px;
+            right: 60px;
+            border-left: none;
+            border-top: none;
+            animation: ornamentAppear 1.5s ease forwards 11.5s;
+        }
+
+        @keyframes ornamentAppear {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 0.2;
+                transform: scale(1);
+            }
+        }
+
+        /* Logo stage fades out when hero appears */
+        .logo-stage {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            padding: 80px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            animation: logoFadeOut 2s cubic-bezier(0.45, 0, 0.15, 1) forwards 7s;
+        }
+
+        @keyframes logoFadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        /* Main SVG container */
+        .animated-logo {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        /* Shoe sole - draws first */
+        .shoe-sole {
+            opacity: 0;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawSole 1.8s cubic-bezier(0.45, 0, 0.15, 1) forwards 0s;
+        }
+
+        @keyframes drawSole {
+            0% {
+                opacity: 0;
+                stroke-dashoffset: 1000;
+            }
+            20% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 1;
+                stroke-dashoffset: 0;
+            }
+        }
+
+        /* Shoe body - unfolds and reveals */
+        .shoe-body {
+            opacity: 0;
+            transform-origin: center bottom;
+            transform: scaleY(0);
+            animation: unfoldBody 1.4s cubic-bezier(0.45, 0, 0.15, 1) forwards 0.8s;
+        }
+
+        @keyframes unfoldBody {
+            0% {
+                opacity: 0;
+                transform: scaleY(0);
+            }
+            30% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 1;
+                transform: scaleY(1);
+            }
+        }
+
+        /* Shoe details - laces, swoosh */
+        .shoe-detail {
+            opacity: 0;
+            stroke-dasharray: 500;
+            stroke-dashoffset: 500;
+            animation: drawDetail 1.2s cubic-bezier(0.45, 0, 0.15, 1) forwards 2s;
+        }
+
+        @keyframes drawDetail {
+            0% {
+                opacity: 0;
+                stroke-dashoffset: 500;
+            }
+            30% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 1;
+                stroke-dashoffset: 0;
+            }
+        }
+
+        /* Brand name letters - appear one by one */
+        .letter {
+            opacity: 0;
+            transform: translateY(25px) scale(0.9);
+            animation: letterReveal 0.6s cubic-bezier(0.45, 0, 0.15, 1) forwards;
+        }
+
+        .letter-1 { animation-delay: 3.2s; }
+        .letter-2 { animation-delay: 3.28s; }
+        .letter-3 { animation-delay: 3.36s; }
+        .letter-4 { animation-delay: 3.44s; }
+        .letter-5 { animation-delay: 3.52s; }
+        .letter-6 { animation-delay: 3.60s; }
+        .letter-7 { animation-delay: 3.68s; }
+        .letter-8 { animation-delay: 3.76s; }
+        .letter-9 { animation-delay: 3.84s; }
+        .letter-10 { animation-delay: 3.92s; }
+        .letter-11 { animation-delay: 4.00s; }
+
+        @keyframes letterReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(25px) scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Tagline appears */
+        .tagline-text {
+            opacity: 0;
+            transform: translateY(10px);
+            animation: taglineReveal 1.2s cubic-bezier(0.45, 0, 0.15, 1) forwards 4.8s;
+        }
+
+        @keyframes taglineReveal {
+            0% {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            100% {
+                opacity: 0.7;
+                transform: translateY(0);
+            }
+        }
+
+        /* Underline accent */
+        .accent-line {
+            stroke-dasharray: 200;
+            stroke-dashoffset: 200;
+            animation: drawAccentLine 1s cubic-bezier(0.45, 0, 0.15, 1) forwards 5.5s;
+        }
+
+        @keyframes drawAccentLine {
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* Shadow effects */
+        .soft-shadow {
+            filter: drop-shadow(0 8px 24px rgba(255, 255, 255, 0.1));
+        }
+
+        /* Floating animation for shoe after initial reveal */
+        .animated-logo {
+            animation: logoFloat 3s ease-in-out infinite 6s;
+        }
+
+        @keyframes logoFloat {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .logo-stage {
+                padding: 60px 20px;
+            }
+            .animated-logo {
+                max-width: 400px;
+            }
+            .hero-title {
+                font-size: 48px;
+            }
+            .hero-tagline {
+                font-size: 20px;
+            }
+            .hero-ornament {
+                width: 40px;
+                height: 40px;
+            }
+            .hero-ornament-tl {
+                top: 30px;
+                left: 30px;
+            }
+            .hero-ornament-br {
+                bottom: 30px;
+                right: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-stage">
+        <svg class="animated-logo" viewBox="0 0 600 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <!-- Gradients for depth -->
+                <linearGradient id="shoeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#e0e0e0;stop-opacity:1" />
+                </linearGradient>
+                
+                <linearGradient id="soleGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" style="stop-color:#f5f5f5;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#cccccc;stop-opacity:1" />
+                </linearGradient>
+
+                <!-- Shadow filter -->
+                <filter id="subtleShadow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+                    <feOffset dx="0" dy="4" result="offsetblur"/>
+                    <feComponentTransfer>
+                        <feFuncA type="linear" slope="0.2"/>
+                    </feComponentTransfer>
+                    <feMerge>
+                        <feMergeNode/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+            </defs>
+
+            <!-- Shoe illustration -->
+            <g class="soft-shadow" filter="url(#subtleShadow)">
+                
+                <!-- Sole (draws first) -->
+                <g class="shoe-sole">
+                    <!-- Bottom sole -->
+                    <path d="M 160 200 Q 165 215, 180 220 L 380 220 Q 410 218, 420 200 Q 422 190, 415 185 L 165 185 Q 158 188, 160 200 Z" 
+                          fill="url(#soleGradient)" 
+                          stroke="#999" 
+                          stroke-width="2"/>
+                    
+                    <!-- Sole detail line -->
+                    <path d="M 170 195 L 410 195" 
+                          stroke="#bbb" 
+                          stroke-width="1.5" 
+                          fill="none"/>
+                    
+                    <!-- Tread pattern -->
+                    <line x1="200" y1="205" x2="205" y2="215" stroke="#aaa" stroke-width="1"/>
+                    <line x1="240" y1="205" x2="245" y2="215" stroke="#aaa" stroke-width="1"/>
+                    <line x1="280" y1="205" x2="285" y2="215" stroke="#aaa" stroke-width="1"/>
+                    <line x1="320" y1="205" x2="325" y2="215" stroke="#aaa" stroke-width="1"/>
+                    <line x1="360" y1="205" x2="365" y2="215" stroke="#aaa" stroke-width="1"/>
+                </g>
+
+                <!-- Main shoe body (unfolds) -->
+                <g class="shoe-body">
+                    <!-- Heel counter -->
+                    <path d="M 165 185 Q 162 160, 170 140 Q 175 130, 185 125 L 200 125 L 205 185 Z" 
+                          fill="url(#shoeGradient)" 
+                          stroke="#ddd" 
+                          stroke-width="1.5"/>
+                    
+                    <!-- Main upper -->
+                    <path d="M 205 185 L 210 105 Q 215 85, 240 75 L 370 75 Q 400 80, 415 105 L 415 185 Z" 
+                          fill="url(#shoeGradient)" 
+                          stroke="#ddd" 
+                          stroke-width="1.5"/>
+                    
+                    <!-- Toe cap -->
+                    <ellipse cx="390" cy="130" rx="35" ry="55" 
+                             fill="none" 
+                             stroke="#e8e8e8" 
+                             stroke-width="1.5"/>
+                    
+                    <!-- Quarter panel -->
+                    <path d="M 210 120 Q 210 110, 220 105 L 280 105 L 285 155 L 215 155 Z" 
+                          fill="rgba(255,255,255,0.3)" 
+                          stroke="#f0f0f0" 
+                          stroke-width="1"/>
+                    
+                    <!-- Ankle collar -->
+                    <path d="M 170 140 Q 175 120, 200 115 L 215 115 L 210 140 Z" 
+                          fill="rgba(255,255,255,0.4)" 
+                          stroke="none"/>
+                </g>
+
+                <!-- Shoe details (laces, swoosh, etc.) -->
+                <g class="shoe-detail">
+                    <!-- Lace eyelets -->
+                    <circle cx="235" cy="115" r="3" fill="#ccc" stroke="#999" stroke-width="0.5"/>
+                    <circle cx="250" cy="110" r="3" fill="#ccc" stroke="#999" stroke-width="0.5"/>
+                    <circle cx="265" cy="108" r="3" fill="#ccc" stroke="#999" stroke-width="0.5"/>
+                    <circle cx="280" cy="107" r="3" fill="#ccc" stroke="#999" stroke-width="0.5"/>
+                    <circle cx="295" cy="108" r="3" fill="#ccc" stroke="#999" stroke-width="0.5"/>
+                    <circle cx="310" cy="110" r="3" fill="#ccc" stroke="#999" stroke-width="0.5"/>
+                    
+                    <!-- Laces -->
+                    <path d="M 235 115 L 250 110 M 250 110 L 265 108 M 265 108 L 280 107 M 280 107 L 295 108 M 295 108 L 310 110" 
+                          stroke="#aaa" 
+                          stroke-width="2" 
+                          fill="none"/>
+                    
+                    <!-- Swoosh design element -->
+                    <path d="M 250 145 Q 300 135, 370 145" 
+                          stroke="#e0e0e0" 
+                          stroke-width="3" 
+                          fill="none" 
+                          stroke-linecap="round"/>
+                    
+                    <!-- Stitching details -->
+                    <path d="M 210 180 L 410 180" 
+                          stroke="#ddd" 
+                          stroke-width="0.8" 
+                          stroke-dasharray="3,2"/>
+                </g>
+            </g>
+
+            <!-- Brand text -->
+            <g class="brand-text">
+                <!-- FAUGETSHOES - each letter animated individually -->
+                <text class="letter letter-1" x="145" y="300" 
+                      font-family="'Cinzel', serif" 
+                      font-size="42" 
+                      font-weight="600"
+                      text-anchor="middle" 
+                      fill="#ffffff"
+                      letter-spacing="2">F</text>
+                
+                <text class="letter letter-2" x="182" y="300" 
+                      font-family="'Cinzel', serif" 
+                      font-size="42" 
+                      font-weight="600"
+                      text-anchor="middle" 
+                      fill="#ffffff"
+                      letter-spacing="2">A</text>
+                
+                <text class="letter letter-3" x="221" y="300" 
+                      font-family="'Cinzel', serif" 
+                      font-size="42" 
+                      font-weight="600"
+                      text-anchor="middle" 
+                      fill="#ffffff"
+                      letter-spacing="2">U</text>
+                
+                <text class="letter letter-4" x="261" y="300" 
+                      font-family="'Cinzel', serif" 
+                      font-size="42" 
+                      font-weight="600"
+                      text-anchor="middle" 
+                      fill="#ffffff"
+                      letter-spacing="2">G</text>
+                
+                <text class="letter letter-5" x="302" y="300" 
+                      font-family="'Cinzel', serif" 
+                      font-size="42" 
+                      font-weight="600"
+                      text-anchor="middle" 
+                      fill="#ffffff"
+                      letter-spacing="2">E</text>
+                
+                <text class="letter letter-6" x="337" y="300" 
+                      font-family="'Cinzel', serif" 
+                      font-size="42" 
+                      font-weight="600"
+                      text-anchor="middle" 
+                      fill="#ffffff"
+                      letter-spacing="2">T</text>
+                
+                <text class="letter letter-7" x="371" y="300" 
+                      font-family="'Cinzel', serif" 
+                      font-size="42" 
+                      font-weight="600"
+                      text-anchor="middle" 
+                      fill="#ffffff"
+                      letter-spacing="2">S</text>
+                
+                <text class="letter letter-8" x="407" y="300" 
+                      font-family="'Cinzel', serif" 
+                      font-size="42" 
+                      font-weight="600"
+                      text-anchor="middle" 
+                      fill="#ffffff"
+                      letter-spacing="2">H</text>
+                
+                <text class="letter letter-9" x="446" y="300" 
+                      font-family="'Cinzel', serif" 
+                      font-size="42" 
+                      font-weight="600"
+                      text-anchor="middle" 
+                      fill="#ffffff"
+                      letter-spacing="2">O</text>
+                
+                <text class="letter letter-10" x="487" y="300" 
+                      font-family="'Cinzel', serif" 
+                      font-size="42" 
+                      font-weight="600"
+                      text-anchor="middle" 
+                      fill="#ffffff"
+                      letter-spacing="2">E</text>
+                
+                <text class="letter letter-11" x="523" y="300" 
+                      font-family="'Cinzel', serif" 
+                      font-size="42" 
+                      font-weight="600"
+                      text-anchor="middle" 
+                      fill="#ffffff"
+                      letter-spacing="2">S</text>
+            </g>
+
+            <!-- Tagline -->
+            <g class="tagline-text">
+                <text x="300" y="330" 
+                      font-family="'Montserrat', sans-serif" 
+                      font-size="11" 
+                      text-anchor="middle" 
+                      fill="#999"
+                      letter-spacing="6"
+                      font-weight="300">
+                    YOUR SLOGAN GOES HERE
+                </text>
+            </g>
+
+            <!-- Accent line under brand name -->
+            <line class="accent-line" 
+                  x1="250" y1="275" x2="350" y2="275" 
+                  stroke="#ffffff" 
+                  stroke-width="0.8"
+                  opacity="0.5"/>
+        </svg>
+    </div>
+
+    <!-- Hero Page -->
+    <div class="hero-page">
+        <div class="hero-ornament hero-ornament-tl"></div>
+        <div class="hero-ornament hero-ornament-br"></div>
+        
+        <div class="hero-content">
+            <div class="hero-welcome">Welcome To</div>
+            
+            <h1 class="hero-title">FAUGETSHOES</h1>
+            
+            <div class="hero-divider"></div>
+            
+            <p class="hero-tagline">Step Into Excellence</p>
+            
+            <p class="hero-description">
+                Where premium craftsmanship meets contemporary design. 
+                Each pair is meticulously crafted to deliver unparalleled comfort, 
+                style, and performance for the modern individual.
+            </p>
+            
+            <div class="hero-cta">
+                <button class="cta-button" onclick="window.location.reload()">
+                    Explore Collection
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Audio context for sound effects
+        let audioContext;
+        let gainNode;
+
+        function initAudio() {
+            audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            gainNode = audioContext.createGain();
+            gainNode.connect(audioContext.destination);
+        }
+
+        // Play smooth whoosh for shoe reveal
+        function playWhoosh(delay = 0) {
+            setTimeout(() => {
+                if (!audioContext) initAudio();
+                
+                const bufferSize = audioContext.sampleRate * 0.6;
+                const buffer = audioContext.createBuffer(1, bufferSize, audioContext.sampleRate);
+                const data = buffer.getChannelData(0);
+                
+                for (let i = 0; i < bufferSize; i++) {
+                    const envelope = Math.exp(-i / (bufferSize * 0.25));
+                    data[i] = (Math.random() * 2 - 1) * envelope * 0.08;
+                }
+                
+                const noise = audioContext.createBufferSource();
+                const filter = audioContext.createBiquadFilter();
+                const envelope = audioContext.createGain();
+                
+                noise.buffer = buffer;
+                filter.type = 'lowpass';
+                filter.frequency.value = 800;
+                
+                noise.connect(filter);
+                filter.connect(envelope);
+                envelope.connect(gainNode);
+                
+                const now = audioContext.currentTime;
+                envelope.gain.setValueAtTime(0, now);
+                envelope.gain.linearRampToValueAtTime(0.06, now + 0.1);
+                envelope.gain.exponentialRampToValueAtTime(0.01, now + 0.6);
+                
+                noise.start(now);
+                noise.stop(now + 0.6);
+            }, delay);
+        }
+
+        // Play letter reveal sound
+        function playLetterSound(pitch, delay = 0) {
+            setTimeout(() => {
+                if (!audioContext) initAudio();
+                
+                const oscillator = audioContext.createOscillator();
+                const envelope = audioContext.createGain();
+                
+                oscillator.connect(envelope);
+                envelope.connect(gainNode);
+                
+                oscillator.frequency.value = pitch;
+                oscillator.type = 'sine';
+                
+                const now = audioContext.currentTime;
+                envelope.gain.setValueAtTime(0, now);
+                envelope.gain.linearRampToValueAtTime(0.04, now + 0.01);
+                envelope.gain.exponentialRampToValueAtTime(0.01, now + 0.12);
+                
+                oscillator.start(now);
+                oscillator.stop(now + 0.12);
+            }, delay);
+        }
+
+        // Main audio sequence
+        function playAnimationAudio() {
+            // Sole drawing
+            playWhoosh(0);
+            
+            // Body unfold
+            playWhoosh(800);
+            
+            // Letter reveals - smooth ascending tones
+            const letterPitches = [
+                523.25, // C5
+                587.33, // D5
+                659.25, // E5
+                698.46, // F5
+                783.99, // G5
+                880.00, // A5
+                987.77, // B5
+                1046.50, // C6
+                1174.66, // D6
+                1318.51, // E6
+                1479.98  // F#6
+            ];
+            
+            letterPitches.forEach((pitch, index) => {
+                playLetterSound(pitch, 3200 + (index * 80));
+            });
+        }
+
+        // Initialize audio on load
+        window.addEventListener('load', () => {
+            document.addEventListener('click', function initOnClick() {
+                initAudio();
+                document.removeEventListener('click', initOnClick);
+            }, { once: true });
+            
+            setTimeout(() => {
+                playAnimationAudio();
+            }, 100);
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yaytunes Apparel - Premium Fashion</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&family=Raleway:wght@200;300;400;500&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+        }
+        
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            font-family: 'Raleway', sans-serif;
+            padding: 40px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
+            animation: drift 30s ease-in-out infinite;
+        }
+        
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-20px, 20px); }
+        }
+        
+        .brand-card {
+            width: 100%;
+            max-width: 1000px;
+            padding-top: 5%;
+            aspect-ratio: 16 / 9;
+            background: linear-gradient(135deg, #FEFEFE 0%, #F5F5F5 100%);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 
+                0 2px 8px rgba(0, 0, 0, 0.1),
+                0 20px 60px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding: 60px;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        /* Decorative corner elements */
+        .corner-accent {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            animation: fadeIn 1s ease-out 4.2s forwards;
+        }
+        
+        .corner-accent.top-left {
+            top: 30px;
+            left: 30px;
+            border-right: none;
+            border-bottom: none;
+        }
+        
+        .corner-accent.bottom-right {
+            bottom: 30px;
+            right: 30px;
+            border-left: none;
+            border-top: none;
+        }
+        
+        /* Background pattern */
+        .pattern-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.015;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,0.03) 2px, rgba(0,0,0,0.03) 4px);
+            pointer-events: none;
+        }
+        
+        /* Animated African woman image */
+        .apparel-container {
+            width: 320px;
+            margin-top: 10%;
+            height: 380px;
+            /* margin-bottom: 40px; */
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .ankara-woman-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            opacity: 0;
+            transform: scale(0.85) translateY(30px);
+            animation: elegantEntrance 1.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards,
+                       floatGentle 4s ease-in-out 2.5s infinite;
+            filter: drop-shadow(0 12px 35px rgba(0, 0, 0, 0.25));
+        }
+        
+        @keyframes elegantEntrance {
+            0% {
+                opacity: 0;
+                transform: scale(0.85) translateY(30px);
+            }
+            60% {
+                transform: scale(1.02) translateY(-5px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        /* Subtle floating animation after entrance */
+        @keyframes floatGentle {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-8px) rotate(0.5deg);
+            }
+        }
+        
+        /* Elegant dividers */
+        .divider-set {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 35px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 2.8s forwards;
+        }
+        
+        .divider {
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0,0,0,0.25) 50%, transparent);
+        }
+        
+        .divider-diamond {
+            width: 6px;
+            height: 6px;
+            background: #000;
+            transform: rotate(45deg);
+        }
+        
+        /* Brand name with decorative elements */
+        .brand-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .brand-name {
+          /* margin-top: 10px; */
+            font-family: 'Playfair Display', serif;
+            font-size: 82px;
+            font-weight: 600;
+            color: #000000;
+            letter-spacing: 16px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            opacity: 0;
+            position: relative;
+            animation: fadeInUp 1.2s ease-out 3s forwards;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        
+        .brand-name::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #000 50%, transparent);
+            animation: expandUnderline 1s ease-out 3.8s forwards;
+        }
+        
+        @keyframes expandUnderline {
+            to { width: 120px; }
+        }
+        
+        .subtitle {
+            font-family: 'Raleway', sans-serif;
+            font-size: 13px;
+            font-weight: 300;
+            letter-spacing: 10px;
+            color: #2a2a2a;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 3.4s forwards;
+        }
+        
+        .established {
+            font-family: 'Playfair Display', serif;
+            font-size: 11px;
+            font-style: italic;
+            color: #666;
+            letter-spacing: 1px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 3.6s forwards;
+        }
+        
+        /* Enhanced contact section */
+        .contact-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 4s forwards;
+        }
+        
+        .contact-bar {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+        }
+        
+        .contact-link {
+            font-family: 'Raleway', sans-serif;
+            font-size: 12px;
+            font-weight: 300;
+            letter-spacing: 1.5px;
+            color: #1a1a1a;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            padding: 8px 16px;
+            border: 1px solid transparent;
+            border-radius: 2px;
+        }
+        
+        .contact-link:hover {
+            color: #000000;
+            background: rgba(0, 0, 0, 0.02);
+            border-color: rgba(0, 0, 0, 0.1);
+            transform: translateY(-1px);
+        }
+        
+        .contact-link svg {
+            width: 16px;
+            height: 16px;
+        }
+        
+        .contact-separator {
+            width: 1px;
+            height: 20px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Location info */
+        .location-info {
+            font-family: 'Raleway', sans-serif;
+            font-size: 10px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: #888;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .location-info svg {
+            width: 12px;
+            height: 12px;
+            opacity: 0.6;
+        }
+        
+        /* Tagline */
+        .tagline {
+            position: absolute;
+            bottom: 35px;
+            font-family: 'Playfair Display', serif;
+            font-size: 15px;
+            font-weight: 400;
+            font-style: italic;
+            color: #666;
+            letter-spacing: 1px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 4.4s forwards;
+        }
+        
+        /* Quality badges */
+        .quality-badges {
+            position: absolute;
+            top: 30px;
+            right: 35px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 8px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 4.6s forwards;
+        }
+        
+        .badge {
+            font-family: 'Raleway', sans-serif;
+            font-size: 8px;
+            font-weight: 400;
+            letter-spacing: 1.5px;
+            color: rgba(0, 0, 0, 0.4);
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: 2px;
+            background: rgba(255, 255, 255, 0.5);
+        }
+        
+        /* Collection preview badges */
+        .collections {
+            position: absolute;
+            bottom: 35px;
+            left: 35px;
+            display: flex;
+            gap: 12px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 4.8s forwards;
+        }
+        
+        .collection-tag {
+            font-family: 'Raleway', sans-serif;
+            font-size: 9px;
+            font-weight: 400;
+            letter-spacing: 1.2px;
+            color: #555;
+            text-transform: uppercase;
+            padding: 6px 12px;
+            background: rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 2px;
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .brand-card {
+                padding: 40px 25px;
+            }
+            
+            .corner-accent {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .corner-accent.top-left {
+                top: 20px;
+                left: 20px;
+            }
+            
+            .corner-accent.bottom-right {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .apparel-container {
+                width: 220px;
+                height: 280px;
+                margin-bottom: 30px;
+            }
+            
+            .brand-name {
+                font-size: 52px;
+                letter-spacing: 10px;
+            }
+            
+            .subtitle {
+                font-size: 11px;
+                letter-spacing: 6px;
+            }
+            
+            .contact-bar {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .contact-separator {
+                display: none;
+            }
+            
+            .tagline {
+                font-size: 12px;
+                bottom: 25px;
+                text-align: center;
+                padding: 0 20px;
+            }
+            
+            .quality-badges {
+                top: 20px;
+                right: 20px;
+            }
+            
+            .collections {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                margin-top: 25px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="brand-card">
+        <!-- Pattern overlay -->
+        <div class="pattern-overlay"></div>
+        
+        <!-- Corner accents -->
+        <div class="corner-accent top-left"></div>
+        <div class="corner-accent bottom-right"></div>
+        
+        <!-- Quality badges -->
+        <div class="quality-badges">
+            <div class="badge">Premium Quality</div>
+            <div class="badge">Est. 2024</div>
+            <div class="badge">Handcrafted</div>
+        </div>
+        
+        <!-- African Woman in Ankara Dress -->
+        <div class="apparel-container">
+            <img src="image.png" alt="Elegant African woman in Ankara dress" class="ankara-woman-img">
+        </div>
+        
+        <!-- Divider set -->
+        <div class="divider-set">
+            <div class="divider"></div>
+            <div class="divider-diamond"></div>
+            <div class="divider"></div>
+        </div>
+        
+        <!-- Brand section -->
+        <div class="brand-section">
+            <h1 class="brand-name">YAYTUNES</h1>
+            <p class="subtitle">Apparel</p>
+            <!-- <p class="established">Established 2024</p> -->
+        </div>
+        
+        <!-- Contact section -->
+        <div class="contact-section">
+            <div class="contact-bar">
+                <a href="https://instagram.com/yaytunes_apparel" class="contact-link" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                    @yaytunes_apparel
+                </a>
+                
+                <div class="contact-separator"></div>
+                
+                <a href="tel:+2348062514626" class="contact-link">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+                    </svg>
+                    +234 806 251 4626
+                </a>
+            </div>
+            
+            <div class="location-info">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                </svg>
+                Lagos, Nigeria
+            </div>
+        </div>
+        
+        <!-- Collections preview -->
+        <div class="collections">
+            <div class="collection-tag">Streetwear</div>
+            <div class="collection-tag">Essentials</div>
+            <div class="collection-tag">Limited Edition</div>
+        </div>
+        
+        <!-- Tagline -->
+        <!-- <p class="tagline">Where style meets substance</p> -->
+    </div>
+</body>
+</html>

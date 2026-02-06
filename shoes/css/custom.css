@@ -1,0 +1,1066 @@
+/* ----------------------------------------------------------------------------------------
+* Author        : Awaiken
+* Template Name : ULaunch - Multi Purpose Products Landing Page
+* File          : CSS File
+* Version       : 1.0
+* ---------------------------------------------------------------------------------------- */
+/* INDEX
+----------------------------------------------------------------------------------------
+01. General css
+02. Navigation area css
+03. Slider area css
+04. About us area css
+05. Features area css
+06. Related Product area css
+07. Testimonial area css
+08. Product area css
+09. Brand area css
+10. Contact us area css
+11. Footer area css
+12. Media Screens
+-------------------------------------------------------------------------------------- */
+
+/************************************/
+/***** 	   01. General css		 ****/
+/************************************/
+
+body{
+	font-size: 16px;
+	font-family: "Bricolage Grotesque", sans-serif;
+	-webkit-font-smoothing: antialiased;
+}
+
+.bricolage-grotesque-regular {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+	margin-top:0;
+	font-weight: 500;
+}
+
+img{
+	max-width: 100%;
+}
+
+a{
+	text-decoration: none;
+}
+
+a:hover{
+	text-decoration: none;
+	outline: 0;
+}
+
+a:focus{
+	text-decoration: none;
+	outline: 0;
+}
+
+figure{
+	margin: 0;
+}
+/* Preloader - Full screen overlay */
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(45, 30, 20, 0.45); /* THIS is the magic */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  padding: 60px 70px;
+  border-radius: 18px;
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.55),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+/* Hide preloader when page is loaded */
+.preloader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Loader animation */
+.loader {
+  width: calc(100px - 14px);
+  height: 50px;
+  border-radius: 50px;
+    background: rgba(45, 30, 20, 0.45); /* THIS is the magic */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  padding: 60px 70px;
+  border-radius: 18px;
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.55),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  /* background: 
+    radial-gradient(farthest-side, #0000 calc(100% - 15px), #ccc calc(100% - 14px) 99%, #0000) left,
+    radial-gradient(farthest-side, #0000 calc(100% - 15px), #ccc calc(100% - 14px) 99%, #0000) right; */
+  background-size: calc(50% + 7px) 100%;
+  background-repeat: no-repeat;
+  position: relative;
+  animation: l10-0 1s infinite linear;
+}
+
+.loader::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto; 
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #f03355;
+  transform-origin: -14px 50%;
+  animation: l10-1 0.5s infinite linear;
+}
+
+@keyframes l10-0 { 
+  0%, 49.99% { transform: scaleX(1); }
+  50%, 100% { transform: scaleX(-1); } 
+}
+
+@keyframes l10-1 { 
+  100% { transform: rotate(1turn); } 
+}
+
+/************************************/
+/***** 02. Navigation area css  *****/
+/************************************/
+
+nav.navbar.main-menu{
+	padding: 16px 0;
+	background: none !important;
+	border-bottom: 1px solid rgba(255,255,255,0.05);
+	transition: all 0.3s ease-in-out;
+}
+
+.navbar-brand{
+	height: auto;
+	transition: all 0.3s ease-in-out;
+}
+
+.navbar-brand img{
+	height: 60px;
+  width: auto;
+	transition: all 0.3s ease-in-out;
+}
+
+.navbar-right{
+	margin-right: 0;
+}
+
+.main-nav{
+	justify-content: flex-end;
+}
+
+nav.navbar.main-menu ul.nav > li > a{
+	font-size: 14px;
+	font-weight: 300;
+	text-transform: uppercase;
+	color: #fff;
+	padding: 20px 20px;
+	line-height: 1em;
+	letter-spacing: 0.05em;
+	transition: all 0.3s ease-in-out;
+}
+
+nav.navbar.main-menu ul.nav > li > a.active{
+	color: #ffc600;
+}
+
+nav.navbar.main-menu.sticky-header{
+	/* background: #06122c !important; */
+  background: rgba(166, 70, 6, 0.45) !important; /* THIS is the magic */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+	padding: 6px 0;
+}
+
+nav.navbar.main-menu.sticky-header .navbar-brand img{
+	height: 46px;
+}
+
+.navbar-toggler{
+	float: right;
+	border: 1px solid #fff;
+	color: #fff;
+	border-radius: 0;
+	padding: 6px 10px;
+	outline: 0;
+	box-shadow: none;
+	margin-top: 8px;
+}
+
+nav.navbar .navbar-toggler:focus{
+	outline: 0;
+	box-shadow: none;
+}
+/* .banner {
+  position: relative;
+  width: 100%;
+  min-height: 100vh; 
+
+ 
+  background:
+    linear-gradient(
+      rgba(0, 0, 0, 0.45),
+      rgba(0, 0, 0, 0.45)
+    ),
+    url("/shoes/red-leather-shoes-stand-light-wooden-floor.jpg");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  padding: 140px 0 100px;
+} */
+.banner {
+   position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  min-height: 100vh;
+  padding: 140px 0 100px;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  animation: bgFade 15s infinite ease-in-out;
+}
+
+/* gradient overlay */
+.banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(0,0,0,0.95),
+    rgba(0,0,0,0.55)
+  );
+  z-index: 1;
+}
+
+/* keep content above overlay */
+.banner > * {
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes bgFade {
+  0% {
+    background-image: url("/shoes/men-shoes.jpg");
+  }
+  33% {
+    background-image: url("/shoes/red-leather-shoes-stand-light-wooden-floor.jpg");
+  }
+  66% {
+    background-image: url("/shoes/groom-s-shoes-isolated.jpg");
+  }
+  100% {
+    background-image: url("/shoes/closeup-shot-beautiful-handmade-shoes-workshop.jpg");
+  }
+}
+/* CONTENT */
+/* CARD */
+.hero-card {
+  position: relative;
+  z-index: 2;
+
+  background: rgba(45, 30, 20, 0.45); /* THIS is the magic */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+
+  padding: 60px 70px;
+  border-radius: 18px;
+
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.55),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+
+  animation: cardFloatIn 1.6s ease-out forwards;
+}
+
+/* TEXT */
+.subtitle {
+  font-size: 1.2rem;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+   color: rgba(210, 180, 140, 0.75); /* warm tan */
+
+  margin-bottom: 14px;
+}
+
+.title {
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 35px;
+
+      background: linear-gradient(
+    rgba(255,255,255,0.9),
+    rgba(255,255,255,0.7)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow:
+    0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* BUTTON */
+.btn-booknow {
+  display: inline-block;
+  padding: 14px 42px;
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+
+  color: #fff;
+  background: linear-gradient(135deg, #8b5a2b, #5a3a1e);
+  border-radius: 50px;
+  text-decoration: none;
+
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+  transition: all 0.35s ease;
+}
+
+.btn-booknow:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.65);
+}
+
+/* ANIMATION */
+@keyframes cardFloatIn {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* MOBILE TWEAK */
+@media (max-width: 768px) {
+  .hero-card {
+    padding: 40px 30px;
+  }
+}
+
+
+/* .banner{
+	position: relative;
+	top: 0px;
+	left: 0;
+	width: 100%;
+	background: radial-gradient(at 10%, #D4A574, #B8956A, #9C7A54, #7A5C42);
+	background: -webkit-radial-gradient(at 10%, #D4A574, #B8956A, #9C7A54, #7A5C42);
+	background: -moz-radial-gradient(at 10%, #D4A574, #B8956A, #9C7A54, #7A5C42);
+	background: -o-radial-gradient(at 10%, #D4A574, #B8956A, #9C7A54, #7A5C42);
+	background-size: cover;
+	padding: 140px 0 100px;
+} */
+/************************************/
+/*****   03. Slider area css    *****/
+/************************************/
+/* .banner{
+	position: relative;
+
+	top: 0px;
+	left: 0;
+	width: 100%;
+	background: radial-gradient(at 10%, #C19A6B, #A67C52, #8B6F47, #6B5344);
+	background: -webkit-radial-gradient(at 10%, #C19A6B, #A67C52, #8B6F47, #6B5344);
+	background: -moz-radial-gradient(at 10%, #C19A6B, #A67C52, #8B6F47, #6B5344);
+	background: -o-radial-gradient(at 10%, #C19A6B, #A67C52, #8B6F47, #6B5344);
+	background-size: cover;
+	padding: 140px 0 100px;
+} */
+/* .banner{
+	position: relative;
+	top: 0px;
+	left: 0;
+	width: 100%;
+	background: radial-gradient(at 10%, #8B4513, #654321, #3E2723, #2C1810);
+	background: -webkit-radial-gradient(at 10%, #8B4513, #654321, #3E2723, #2C1810);
+	background: -moz-radial-gradient(at 10%, #8B4513, #654321, #3E2723, #2C1810);
+	background: -o-radial-gradient(at 10%, #8B4513, #654321, #3E2723, #2C1810);
+	background-size: cover;
+	padding: 140px 0 100px;
+} */
+
+.banner .row{
+	position: relative;
+	z-index: 1;
+}
+
+.header-content h2{
+	/* font-family: 'norwester', sans-serif; */
+	font-size: 116px;
+	font-weight: 700;
+	/* font-style: italic; */
+	margin: 0;
+}
+
+.text-blue{
+	color: #00edf5;
+}
+
+.text-lightblue{
+	color: #4e638d;
+}
+
+.text-white{
+	color: #fff;
+}
+
+.btn-booknow{
+	display: inline-block;
+	background: #ffc600;
+	color: #06122c;
+	font-size: 18px;
+	font-weight: 500;
+	padding: 10px 30px 8px;
+	border: 2px solid #ffc600;
+	border-radius: 40px; 
+	margin-top: 20px;
+	transition: all 0.3s ease-in-out;
+}
+
+.btn-booknow:hover{
+	background: none;
+	color: #ffc600;
+}
+
+/**************************************/
+/*****   04. About us area css    *****/
+/**************************************/
+
+.section-title{
+	text-align: center;
+	padding-bottom: 20px;
+	margin-bottom: 60px;
+	background: url(../images/blue-divider.png) no-repeat bottom center;
+}
+
+.section-title h2{
+	font-size: 60px;
+	color: #06122c;
+	font-weight: 700;
+	margin-bottom: 0;
+}
+
+.section-title p{
+	color: #06122c;
+	font-size: 20px;
+	font-weight: 500;
+	font-style: italic;
+	margin: 0;
+}
+
+.aboutus{
+	background: #ea7629;
+	padding: 80px 0;
+  color: #fff;
+}
+
+.aboutus .section-title{
+  color: #fff;
+
+	text-align: left;
+	margin-bottom: 40px;
+	background: url(../images/blue-left-divider.png) no-repeat bottom left;	
+}
+
+.about-entry p{
+  color: #fff;
+
+	/* color: #06122c; */
+	line-height: 1.5em;
+	font-weight: 300;
+	margin-bottom: 1.5em;
+}
+
+.about-image{
+	padding-top: 60px;
+	text-align: right;
+}
+
+/**************************************/
+/*****   05. Features area css    *****/
+/**************************************/
+
+.features{
+	padding: 80px 0;
+	background: #ecf4f4;
+}
+
+.features-image{
+	text-align: center;
+	margin-bottom: 100px;
+}
+
+.feature-single h3{
+	font-size: 96px;
+	color: #ffc600;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.feature-single h4{
+	font-size: 26px;
+	color: #040e27;
+	font-weight: 300;
+	margin-bottom: 20px;
+}
+
+.feature-single p{
+	font-size: 14px;
+	color: #818282;
+	font-weight: 300;
+}
+
+/****************************************/
+/***** 06. Related Product area css *****/
+/****************************************/
+
+.related-product{
+	padding: 80px 0 220px;
+	background: #f2f6f6 url(../images/waves.png) no-repeat bottom center;
+	background-size: contain;
+}
+
+.related-single{
+	margin-bottom: 80px;
+}
+
+.related-product-info{
+	padding-top: 30px;
+}
+
+.related-product-info h3{
+	font-size: 35px;
+	color: #06122c;
+	font-weight: 700;
+	margin-bottom: 1em;
+}
+
+.related-product-info p{
+	font-size: 14px;
+	color: #818282;
+	font-weight: 300;
+	margin-bottom: 1.5em;
+}
+
+.related-product-info .btn-booknow{
+	margin-top: 10px;
+}
+
+/****************************************/
+/*****   07. Testimonial area css   *****/
+/****************************************/
+
+.testimonial{
+	padding: 80px 0;
+	background: #06122c;
+}
+
+.testimonial .section-title{
+	background: url(../images/white-divider.png) no-repeat bottom center;
+}
+
+.testimonial .section-title p{
+	color: #ffc600;
+}
+
+.testimonial .section-title h2{
+	color: #fefefe;
+}
+
+.testimonial-single{
+	max-width: 768px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.testimonial-single p{
+	color: #fff;
+	font-style: italic;
+	font-weight: 500;
+	font-size: 20px;
+	margin-bottom: 30px;
+}
+
+.ratting{
+	color: #ffc600;
+	position: relative;
+	padding-top: 30px;
+	padding-bottom: 10px;
+}
+
+.ratting:before{
+	content: '';
+	display: block;
+	width: 80px;
+	height: 1px;
+	position: absolute;
+	top: 0;
+	left: 50%;
+	background: rgba(255,255,255,0.2);
+	margin-left: -40px;
+}
+
+.testimonial-single h3{
+	color: #fff;
+	font-weight: 500;
+	font-size: 20px;
+}
+
+.testimonial-single h3 span{
+	display: block;
+	font-size: 16px;
+	font-style: italic;
+	font-weight: 300;
+	padding-top: 6px;
+}
+
+.testimonial-pagination{
+	text-align: center;
+	padding-top: 20px;
+}
+
+.testimonial-pagination .swiper-pagination-bullet{
+	width: 12px;
+	height: 12px;
+	background: #fff;
+	opacity: 1;
+}
+
+.testimonial-pagination .swiper-pagination-bullet-active{
+	background: #ffc600;
+}
+
+/****************************************/
+/*****     08. Product area css     *****/
+/****************************************/
+
+.row.no-gutters {
+   margin-right: 0;
+   margin-left: 0;
+}
+
+.row.no-gutters > [class^="col-"],
+.row.no-gutters > [class*=" col-"] {
+   padding-right: 0;
+   padding-left: 0;
+}
+
+.products .container-fluid{
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.product-single{
+	position: relative;
+}
+
+.product-image{
+	position: relative;
+}
+
+.product-image img{
+	width: 100%;
+}
+
+.product-image:before{
+	content: '';
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #06122c;
+	opacity: 0.4;
+}
+
+.product-info{
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	padding: 30px;
+	transition: all 0.3s ease-in-out;
+}
+
+.product-info h3{
+	color: #fff;
+	font-size: 26px;
+	margin-bottom: 4px;
+}
+
+.product-info p{
+	color: #fff;
+	font-size: 18px;
+	font-weight: 500;
+	margin-bottom: 0;
+}
+
+.product-info p span{
+	color: #ffc600;
+}
+
+.product-info .btn-booknow{
+	padding: 6px 20px 5px;
+	font-size: 16px;
+	margin-top: 8px;
+}
+
+.product-single:hover .product-info{
+	padding-bottom: 50px;
+}
+
+/**************************************/
+/*****     09. Brand area css     *****/
+/**************************************/
+
+.brand{
+	padding: 30px 0;
+	background: #f2f6f6;
+}
+
+.brand-single{
+	text-align: center;
+}
+
+/*******************************************/
+/*****     10. Contact us area css     *****/
+/*******************************************/
+
+.contactus{
+	padding: 80px 0;
+}
+
+.contact-about{
+	padding-bottom: 30px;
+}
+
+.contact-about p{
+	color: #bbbbbb;
+	font-weight: 300;
+	line-height: 1.5em;
+}
+
+.contact-info-single h3{
+	color: #06122c;
+	font-size: 18px;
+}
+
+.contact-info-single p{
+	color: #bbbbbb;
+	font-weight: 300;
+	line-height: 1.5em;
+}
+
+.contact-form .form-control{
+	box-shadow: none;
+	border-radius: 0;
+	height: auto;
+	padding: 10px 14px;
+	background: #f3f3f3;
+	border: none;
+	outline: 0;
+	resize: none;
+	font-size: 14px;
+}
+
+.btn-contact{
+	display: inline-block;
+    background: #ffc600;
+    color: #06122c;
+    font-size: 18px;
+    font-weight: 500;
+    padding: 10px 30px 8px;
+    border: 2px solid #ffc600;
+    border-radius: 40px;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-contact:hover{
+	background: none;
+	color: #ffc600;
+}
+
+.with-errors ul{
+	margin: 0;
+	color: #a94442;
+}
+
+/***************************************/
+/*****     11. Footer area css     *****/
+/***************************************/
+
+footer{
+	background: #ea7629;
+	padding: 80px 0;
+	text-align: center;
+}
+
+.footer-logo{
+
+}
+
+.footer-menu{
+	margin-top: 30px;
+}
+
+.footer-menu ul{
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.footer-menu ul li{
+	display: inline-block;
+	text-transform: uppercase;
+}
+
+.footer-menu ul li a{
+	display: block;
+	font-size: 14px;
+	color: #fff;
+	font-weight: 300;
+	letter-spacing: 0.04em;
+	padding: 0 6px;
+}
+
+.footer-menu ul li a:hover{
+	color: #ffc600;
+}
+
+.footer-social{
+	margin-top: 30px;
+}
+
+.footer-social a{
+	display: inline-block;
+	width: 36px;
+	height: 36px;
+	background: #fff;
+	text-align: center;
+	color: #06122c;
+	font-size: 20px;
+	padding-top: 5px;
+	border-radius: 50%;
+	margin: 0 4px;
+	transition: all 0.3s ease-in-out;
+}
+
+.footer-social a:hover{
+	background: #ffc600;
+}
+
+.footer-siteinfo{
+	margin-top: 30px;
+}
+
+.footer-siteinfo p{
+	color: #fff;
+	font-weight: 300;
+}
+
+/************************************/
+/*****    12. Media Screens     *****/
+/************************************/
+
+@media only screen and (max-width: 1200px){
+	.navbar-default .navbar-nav>li>a:after{
+		padding: 0 12px 0 14px;
+	}
+	
+	.header-content h2{
+		font-size: 94px;
+	}
+}
+
+@media only screen and (max-width: 991px){
+	
+	nav.navbar.main-menu,
+	nav.navbar.main-menu.sticky-header{
+		padding: 14px 0;
+	}
+
+	.navbar-brand img{
+		height: 46px;
+	}
+
+	nav.navbar.main-menu .navbar-header{
+		position: relative;
+		width: 100%;
+	}
+	
+	nav.navbar.main-menu .navbar-collapse{
+		background: #06122c;
+		padding: 0 20px;
+		margin: 10px -15px 0;
+	}
+	
+	nav.navbar.main-menu .navbar-nav{
+		margin: 0;
+		padding: 0;
+	}
+	
+	nav.navbar.main-menu.sticky-header ul.nav > li > a,
+	nav.navbar.main-menu ul.nav > li > a{
+		padding: 12px 0;
+		border: none;
+		margin: 0;
+	}
+	
+	nav.navbar.main-menu ul.nav > li > a:after{
+		display: none;
+	}
+	
+	.header-content h2{
+		font-size: 64px;
+	}
+	
+	.section-title h2{
+		font-size: 46px;
+	}
+	
+	.section-title p{
+		font-size: 18px;
+	}
+	
+	.related-product-info{
+		padding-top: 0;
+	}
+	
+	.contact-info-single{
+		margin-bottom: 30px;
+	}
+}
+
+/* Mobile Layout */
+@media only screen and (max-width: 767px){
+	nav.navbar.bootsnav.sticky-header .navbar-brand,
+	nav.navbar.bootsnav .navbar-brand{
+		padding-left: 15px;
+		padding-right: 15px;
+	}
+	
+	nav.navbar.bootsnav .navbar-toggle{
+		right: 15px;
+	}
+	
+	nav.navbar.bootsnav .navbar-collapse{
+		margin-left: -15px;
+		margin-right: -15px;
+	}
+	
+	.slider-image{
+		text-align: center;
+		margin-bottom: 40px;
+	}
+	
+	.header-content{
+		text-align: center;
+	}
+	
+	.header-content h2{
+		font-size: 36px;
+		line-height: 1.2em;
+	}
+	
+	.banner{
+		padding: 140px 0 60px;
+	}
+	
+	.section-title h2{
+		font-size: 28px;
+	}
+	
+	.section-title p{
+		font-size: 14px;
+	}
+	
+	.aboutus,
+	.related-product,
+	.testimonial,
+	.contactus,
+	footer{
+		padding: 60px 0;
+	}
+	
+	.features{
+		padding: 60px 0 30px;
+	}
+	
+	.about-image{
+		text-align: center;
+	}
+	
+	.features-image{
+		margin-bottom: 40px;
+	}
+	
+	.feature-single{
+		margin-bottom: 30px;
+	}
+	
+	.feature-single h3{
+		font-size: 60px;
+	}
+	
+	.related-product-info{
+		margin-bottom: 40px;
+	}
+	
+	.related-product-image{
+		text-align: center;
+	}
+	
+	.related-product-info h3{
+		font-size: 24px;
+	}
+}
+
+/* Small Mobile Layout */
+
+@media only screen and (max-width: 480px) {
+	.testimonial-single p{
+		font-size: 16px;
+	}
+	
+	.testimonial-single h3{
+		font-size: 16px;
+	}
+}

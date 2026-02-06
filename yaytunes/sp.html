@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yaytunes Apparel - Premium Fashion</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@200;300;400;500&display=swap&family=Belleza&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        @font-face {
+    font-family: 'Chasa Marelo';
+    src: url('./shanoy-regular.otf') format('truetype');
+    /* OR if it's .otf: */
+    /* src: url('ChasaMarelo.otf') format('opentype'); */
+    /* OR if it's .woff: */
+    /* src: url('ChasaMarelo.woff') format('woff'); */
+    font-weight: normal;
+    font-style: normal;
+}
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+            }
+        }
+        
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #262626 100%);
+            font-family: 'Montserrat', sans-serif;
+            padding: 50px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.04) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
+            animation: drift 35s ease-in-out infinite;
+        }
+        
+        @keyframes drift {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            50% { transform: translate(-30px, 30px) rotate(1deg); }
+        }
+        
+        .brand-card {
+            width: 100%;
+            max-width: 1100px;
+            aspect-ratio: 16 / 9;
+            background: linear-gradient(135deg, #FFFFFF 0%, #F8F8F8 100%);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            box-shadow: 
+                0 4px 12px rgba(0, 0, 0, 0.15),
+                0 25px 70px rgba(0, 0, 0, 0.35),
+                inset 0 1px 0 rgba(255, 255, 255, 0.9);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto 1fr auto;
+            position: relative;
+            padding: 50px;
+            overflow: hidden;
+            z-index: 1;
+            gap: 30px;
+        }
+        
+        /* Elegant corner ornaments */
+        .corner-ornament {
+            position: absolute;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 4.5s forwards;
+        }
+        
+        .corner-ornament.top-left {
+            top: 25px;
+            left: 25px;
+            width: 80px;
+            height: 80px;
+            border-top: 2px solid rgba(0, 0, 0, 0.15);
+            border-left: 2px solid rgba(0, 0, 0, 0.15);
+        }
+        
+        .corner-ornament.top-left::after {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            width: 20px;
+            height: 20px;
+            border-top: 2px solid rgba(0, 0, 0, 0.25);
+            border-left: 2px solid rgba(0, 0, 0, 0.25);
+        }
+        
+        .corner-ornament.bottom-right {
+            bottom: 25px;
+            right: 25px;
+            width: 80px;
+            height: 80px;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.15);
+            border-right: 2px solid rgba(0, 0, 0, 0.15);
+        }
+        
+        .corner-ornament.bottom-right::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            right: -2px;
+            width: 20px;
+            height: 20px;
+            border-bottom: 2px solid rgba(0, 0, 0, 0.25);
+            border-right: 2px solid rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Subtle texture overlay */
+        .texture-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.02;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,0,0,0.04) 3px, rgba(0,0,0,0.04) 6px),
+                repeating-linear-gradient(90deg, transparent, transparent 3px, rgba(0,0,0,0.04) 3px, rgba(0,0,0,0.04) 6px);
+            pointer-events: none;
+        }
+        
+        /* Left section - Image */
+        .image-section {
+            grid-column: 1;
+            grid-row: 1 / -1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .apparel-container {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .ankara-woman-img {
+            width: 100%;
+            height: auto;
+            max-height: 520px;
+            object-fit: contain;
+            opacity: 0;
+            transform: scale(0.88) translateY(25px);
+            animation: gracefulEntrance 2s cubic-bezier(0.25, 1, 0.5, 1) 0.2s forwards,
+                       subtleFloat 5s ease-in-out 2.5s infinite;
+            filter: drop-shadow(0 15px 40px rgba(0, 0, 0, 0.3));
+        }
+        
+        @keyframes gracefulEntrance {
+            0% {
+                opacity: 0;
+                transform: scale(0.88) translateY(25px);
+            }
+            70% {
+                transform: scale(1.01) translateY(-3px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+        
+        @keyframes subtleFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+        
+        /* Right section - Brand content */
+        .content-section {
+            grid-column: 2;
+            grid-row: 1 / -1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 30px 20px;
+        }
+        
+        /* Premium badges */
+        .premium-badges {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 35px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 2.8s forwards;
+        }
+        
+        .badge {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9px;
+            font-weight: 500;
+            letter-spacing: 1.8px;
+            color: rgba(0, 0, 0, 0.5);
+            text-transform: uppercase;
+            padding: 6px 14px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 3px;
+            background: rgba(0, 0, 0, 0.02);
+        }
+        
+        /* Decorative divider */
+        .divider-elegant {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 3.2s forwards;
+            width: 100%;
+            max-width: 200px;
+        }
+        
+        .divider-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, rgba(0,0,0,0.3), transparent);
+        }
+        
+        .divider-dot {
+            width: 5px;
+            height: 5px;
+            background: #000;
+            border-radius: 50%;
+        }
+        
+        /* Brand name - using Cinzel as elegant serif alternative */
+        .brand-name {
+            /* font-family: 'Bodoni Moda', serif; */
+            font-family: 'Cinzel', serif;
+            /* font-family: 'Belleza', serif; */
+            font-size: 92px;
+            font-weight: 600;
+            color: #000000;
+            letter-spacing: 18px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            opacity: 0;
+            position: relative;
+            animation: fadeInSlide 1.4s cubic-bezier(0.25, 1, 0.5, 1) 3.5s forwards;
+            line-height: 1;
+            /* text-shadow: 0 3px 6px rgba(0, 0, 0, 0.08); */
+        }
+        
+        @keyframes fadeInSlide {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .brand-name::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #000 0%, rgba(0,0,0,0.4) 70%, transparent 100%);
+            animation: expandLine 1.2s ease-out 4.2s forwards;
+        }
+        
+        @keyframes expandLine {
+            to { width: 150px; }
+        }
+        
+        .subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 300;
+            letter-spacing: 12px;
+            color: #2a2a2a;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 4s forwards;
+        }
+        
+        .established {
+            font-family: 'Cinzel', serif;
+            font-size: 11px;
+            font-weight: 400;
+            color: #777;
+            letter-spacing: 2px;
+            margin-bottom: 45px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 4.3s forwards;
+        }
+        
+        /* Tagline */
+        .tagline {
+            font-family: 'Cinzel', serif;
+            font-size: 16px;
+            font-weight: 400;
+            font-style: italic;
+            color: #555;
+            letter-spacing: 1px;
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 4.6s forwards;
+        }
+        
+        /* Contact section */
+        .contact-section {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 4.9s forwards;
+        }
+        
+        .contact-link {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 13px;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: #1a1a1a;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            padding: 10px 18px;
+            border: 1px solid transparent;
+            border-radius: 3px;
+            width: fit-content;
+        }
+        
+        .contact-link:hover {
+            color: #000000;
+            background: rgba(0, 0, 0, 0.04);
+            border-color: rgba(0, 0, 0, 0.15);
+            transform: translateX(3px);
+        }
+        
+        .contact-link svg {
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
+        
+        .location-info {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: #999;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .location-info svg {
+            width: 14px;
+            height: 14px;
+            opacity: 0.7;
+        }
+        
+        /* Collection tags */
+        .collections {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 35px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 5.2s forwards;
+        }
+        
+        .collection-tag {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            color: #666;
+            text-transform: uppercase;
+            padding: 8px 16px;
+            background: rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        .collection-tag:hover {
+            background: rgba(0, 0, 0, 0.08);
+            border-color: rgba(0, 0, 0, 0.2);
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        /* Responsive */
+        @media (max-width: 900px) {
+            .brand-card {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto;
+                padding: 35px 25px;
+                gap: 20px;
+            }
+            
+            .image-section {
+                grid-column: 1;
+                grid-row: 1;
+                padding: 10px;
+            }
+            
+            .apparel-container {
+                max-width: 280px;
+            }
+            
+            .ankara-woman-img {
+                max-height: 350px;
+            }
+            
+            .content-section {
+                grid-column: 1;
+                grid-row: 2;
+                align-items: center;
+                text-align: center;
+                padding: 20px 10px;
+            }
+            
+            .brand-name {
+                font-size: 58px;
+                letter-spacing: 12px;
+            }
+            
+            .subtitle {
+                font-size: 11px;
+                letter-spacing: 8px;
+            }
+            
+            .tagline {
+                font-size: 13px;
+            }
+            
+            .premium-badges,
+            .collections {
+                justify-content: center;
+            }
+            
+            .divider-elegant {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .contact-link {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            
+            .corner-ornament {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .corner-ornament.top-left {
+                top: 15px;
+                left: 15px;
+            }
+            
+            .corner-ornament.bottom-right {
+                bottom: 15px;
+                right: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .brand-card {
+                padding: 25px 20px;
+            }
+            
+            .brand-name {
+                font-size: 42px;
+                letter-spacing: 8px;
+            }
+            
+            .subtitle {
+                font-size: 9px;
+                letter-spacing: 6px;
+            }
+            
+            .contact-link {
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="brand-card">
+        <!-- Texture overlay -->
+        <div class="texture-overlay"></div>
+        
+        <!-- Corner ornaments -->
+        <div class="corner-ornament top-left"></div>
+        <div class="corner-ornament bottom-right"></div>
+        
+        <!-- Left section - Image -->
+        <div class="image-section">
+            <div class="apparel-container">
+                <img src="image.png" alt="Elegant African woman in Ankara dress" class="ankara-woman-img">
+            </div>
+        </div>
+        
+        <!-- Right section - Brand content -->
+        <div class="content-section">
+            <!-- Premium badges -->
+            <div class="premium-badges">
+                <div class="badge">Premium</div>
+                <div class="badge">Est. 2024</div>
+                <div class="badge">Handcrafted</div>
+            </div>
+            
+            <!-- Decorative divider -->
+            <div class="divider-elegant">
+                <div class="divider-line"></div>
+                <div class="divider-dot"></div>
+                <div class="divider-line"></div>
+            </div>
+            
+            <!-- Brand name -->
+            <h1 class="brand-name">YAYTUNES</h1>
+            <p class="subtitle">Apparel</p>
+            <p class="established">Established 2024</p>
+            
+            <!-- Tagline -->
+            <p class="tagline">Where style meets substance</p>
+            
+            <!-- Contact section -->
+            <div class="contact-section">
+                <a href="https://instagram.com/yaytunes_apparel" class="contact-link" target="_blank" rel="noopener">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                    @yaytunes_apparel
+                </a>
+                
+                <a href="tel:+2348062514626" class="contact-link">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"/>
+                    </svg>
+                    +234 806 251 4626
+                </a>
+                
+                <div class="location-info">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                    </svg>
+                    Lagos, Nigeria
+                </div>
+            </div>
+            
+            <!-- Collections -->
+            <div class="collections">
+                <div class="collection-tag">Streetwear</div>
+                <div class="collection-tag">Essentials</div>
+                <div class="collection-tag">Limited Edition</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

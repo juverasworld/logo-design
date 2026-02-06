@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Styled by Dera SBD - Luxury Wig Styling Atelier</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: #0a0a0a;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #c9a961;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: all 0.15s ease;
+            mix-blend-mode: difference;
+        }
+
+        .cursor-follower {
+            width: 50px;
+            height: 50px;
+            border: 1px solid rgba(201, 169, 97, 0.3);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: all 0.3s cubic-bezier(0.75, -0.5, 0.25, 1.5);
+            mix-blend-mode: difference;
+        }
+
+        .cursor.hover {
+            transform: scale(2);
+            background: rgba(201, 169, 97, 0.2);
+        }
+
+        /* Particle Background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: radial-gradient(circle, #f4e4c1 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0;
+            animation: float 15s infinite;
+        }
+
+        @keyframes float {
+            0% {
+                opacity: 0;
+                transform: translateY(100vh) translateX(0) scale(0);
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100vh) translateX(100px) scale(1);
+            }
+        }
+
+        /* Main Container */
+        .container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            padding: 40px;
+        }
+
+        /* Logo Section */
+        .logo-showcase {
+            text-align: center;
+            max-width: 1200px;
+            width: 100%;
+        }
+
+        /* Animated Logo Container */
+        .logo-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 60px;
+        }
+
+        /* Glow Effect */
+        .glow-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 500px;
+            height: 500px;
+            transform: translate(-50%, -50%);
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(201, 169, 97, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+            pointer-events: none;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.2);
+                opacity: 0.8;
+            }
+        }
+
+        /* Interactive Logo SVG */
+        .logo-svg {
+            width: 450px;
+            height: 450px;
+            filter: drop-shadow(0 20px 60px rgba(201, 169, 97, 0.3));
+            transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .logo-svg:hover {
+            filter: drop-shadow(0 30px 90px rgba(201, 169, 97, 0.6));
+            transform: scale(1.05);
+        }
+
+        /* SVG Animation Classes */
+        .hair-strand {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawStrand 2s ease-out forwards;
+        }
+
+        @keyframes drawStrand {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        .hair-strand:nth-child(1) { animation-delay: 0.1s; }
+        .hair-strand:nth-child(2) { animation-delay: 0.2s; }
+        .hair-strand:nth-child(3) { animation-delay: 0.3s; }
+        .hair-strand:nth-child(4) { animation-delay: 0.4s; }
+        .hair-strand:nth-child(5) { animation-delay: 0.5s; }
+        .hair-strand:nth-child(6) { animation-delay: 0.6s; }
+        .hair-strand:nth-child(7) { animation-delay: 0.7s; }
+        .hair-strand:nth-child(8) { animation-delay: 0.8s; }
+
+        .scissors {
+            transform-origin: center;
+            animation: scissorFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes scissorFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(-35deg);
+            }
+            50% {
+                transform: translateY(-8px) rotate(-32deg);
+            }
+        }
+
+        .silhouette {
+            opacity: 0;
+            animation: fadeIn 1s ease-out 0.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Typography */
+        .brand-name {
+            font-family: 'Cinzel', serif;
+            font-size: 72px;
+            font-weight: 700;
+            letter-spacing: 12px;
+            background: linear-gradient(135deg, #c9a961 0%, #f4e4c1 50%, #b8935f 100%);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: shimmer 3s ease-in-out infinite;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideUp 1s ease-out 1.5s forwards, shimmer 3s ease-in-out 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .divider {
+            width: 300px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #c9a961, transparent);
+            margin: 30px auto;
+            opacity: 0;
+            animation: expandLine 1s ease-out 2s forwards;
+        }
+
+        @keyframes expandLine {
+            from {
+                width: 0;
+                opacity: 0;
+            }
+            to {
+                width: 300px;
+                opacity: 1;
+            }
+        }
+
+        .tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 28px;
+            font-weight: 300;
+            font-style: italic;
+            color: #e0e0e0;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 2.2s forwards;
+        }
+
+        .subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 300;
+            color: #999;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 2.4s forwards;
+        }
+
+        /* Interactive Cards */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 80px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 2.6s forwards;
+        }
+
+        .feature-card {
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid rgba(201, 169, 97, 0.2);
+            border-radius: 2px;
+            padding: 40px 30px;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(201, 169, 97, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(201, 169, 97, 0.6);
+            box-shadow: 0 20px 60px rgba(201, 169, 97, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+            filter: grayscale(0.3) brightness(1.2);
+        }
+
+        .feature-title {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            font-weight: 600;
+            color: #f4e4c1;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .feature-description {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 300;
+            color: #b0b0b0;
+            line-height: 1.8;
+            letter-spacing: 0.5px;
+        }
+
+        /* Scroll Indicator */
+        .scroll-indicator {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            animation: fadeIn 1s ease-out 3s forwards, bounce 2s ease-in-out 3.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                transform: translateX(-50%) translateY(10px);
+            }
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 50px;
+            background: linear-gradient(180deg, transparent, #c9a961);
+            margin: 0 auto 10px;
+        }
+
+        .scroll-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 300;
+            color: #666;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .logo-svg {
+                width: 300px;
+                height: 300px;
+            }
+
+            .brand-name {
+                font-size: 48px;
+                letter-spacing: 8px;
+            }
+
+            .tagline {
+                font-size: 20px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Custom Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <!-- Particle Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <div class="logo-showcase">
+            <!-- Logo with Glow -->
+            <div class="logo-container">
+                <div class="glow-ring"></div>
+                
+                <svg class="logo-svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#c9a961;stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:#f4e4c1;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#b8935f;stop-opacity:1" />
+                        </linearGradient>
+                        
+                        <linearGradient id="silhouetteGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" style="stop-color:#1a1a1a;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#0d0d0d;stop-opacity:1" />
+                        </linearGradient>
+
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+
+                    <!-- Main composition -->
+                    <g transform="translate(200, 120)">
+                        
+                        <!-- Female silhouette -->
+                        <g class="silhouette">
+                            <path d="M -10,-60 Q -13,-55 -15,-45 Q -16,-30 -16,-15 Q -16,0 -14,10 Q -12,18 -8,24 Q -4,28 2,28 Q 6,28 9,25 Q 12,22 13,17 L 14,17" 
+                                  fill="url(#silhouetteGrad)"/>
+                            <path d="M -15,-15 Q -11,-13 -7,-11 L -6,-4 Q -7,-2 -9,-1" 
+                                  fill="none" 
+                                  stroke="url(#silhouetteGrad)" 
+                                  stroke-width="1.2"/>
+                            <path d="M -6,5 Q -3,7 0,7 Q 3,7 6,5 Q 3,9 0,9 Q -3,9 -6,5" 
+                                  fill="#d4a89a" 
+                                  opacity="0.5"/>
+                            <path d="M 13,17 Q 11,30 8,40 L -4,40 Q -7,32 -9,25" 
+                                  fill="url(#silhouetteGrad)"/>
+                        </g>
+
+                        <!-- Flowing hair strands with animation -->
+                        <g class="hair">
+                            <path class="hair-strand" 
+                                  d="M -10,-60 Q -18,-62 -28,-60 Q -42,-56 -52,-48 Q -60,-40 -64,-28 Q -66,-16 -63,0 Q -60,10 -55,18 Q -50,24 -45,28" 
+                                  fill="none" 
+                                  stroke="url(#goldGradient)" 
+                                  stroke-width="4"
+                                  stroke-linecap="round"
+                                  filter="url(#glow)"/>
+                            
+                            <path class="hair-strand" 
+                                  d="M -14,-58 Q -24,-56 -35,-50 Q -46,-43 -54,-33 Q -60,-22 -62,-8 Q -62,4 -59,14 Q -56,21 -50,26" 
+                                  fill="none" 
+                                  stroke="#c9a961" 
+                                  stroke-width="3.5"
+                                  stroke-linecap="round"
+                                  opacity="0.9"/>
+                            
+                            <path class="hair-strand" 
+                                  d="M -18,-56 Q -30,-52 -42,-43 Q -52,-34 -58,-22 Q -62,-10 -63,3 Q -62,13 -58,21 Q -54,26 -48,30" 
+                                  fill="none" 
+                                  stroke="#f4e4c1" 
+                                  stroke-width="3"
+                                  stroke-linecap="round"
+                                  opacity="0.8"/>
+                            
+                            <path class="hair-strand" 
+                                  d="M -22,-54 Q -35,-48 -47,-38 Q -56,-28 -61,-16 Q -64,-3 -64,10 Q -62,19 -58,26" 
+                                  fill="none" 
+                                  stroke="#b8935f" 
+                                  stroke-width="2.5"
+                                  stroke-linecap="round"
+                                  opacity="0.7"/>
+
+                            <!-- Cascading ends -->
+                            <path class="hair-strand" 
+                                  d="M -45,28 Q -42,34 -38,39 Q -34,44 -29,47 Q -24,50 -19,52" 
+                                  fill="none" 
+                                  stroke="url(#goldGradient)" 
+                                  stroke-width="4"
+                                  stroke-linecap="round"
+                                  filter="url(#glow)"/>
+                            
+                            <path class="hair-strand" 
+                                  d="M -48,30 Q -44,37 -39,42 Q -34,47 -28,50 Q -22,53 -16,54" 
+                                  fill="none" 
+                                  stroke="#c9a961" 
+                                  stroke-width="3.5"
+                                  stroke-linecap="round"
+                                  opacity="0.9"/>
+
+                            <!-- Wispy highlights -->
+                            <path class="hair-strand" 
+                                  d="M -15,-56 Q -27,-52 -38,-44 Q -47,-36 -52,-25" 
+                                  fill="none" 
+                                  stroke="#f4e4c1" 
+                                  stroke-width="1.8"
+                                  stroke-linecap="round"
+                                  opacity="0.5"/>
+                            
+                            <path class="hair-strand" 
+                                  d="M -20,-54 Q -32,-48 -43,-38 Q -50,-29 -55,-18" 
+                                  fill="none" 
+                                  stroke="#f4e4c1" 
+                                  stroke-width="1.8"
+                                  stroke-linecap="round"
+                                  opacity="0.4"/>
+                        </g>
+
+                        <!-- Animated Scissors -->
+                        <g class="scissors" transform="translate(20, -18)">
+                            <circle cx="0" cy="0" r="6" 
+                                    fill="none" 
+                                    stroke="url(#silhouetteGrad)" 
+                                    stroke-width="2"/>
+                            <circle cx="0" cy="16" r="6" 
+                                    fill="none" 
+                                    stroke="url(#silhouetteGrad)" 
+                                    stroke-width="2"/>
+                            
+                            <circle cx="0" cy="0" r="4" 
+                                    fill="url(#goldGradient)" 
+                                    opacity="0.3"/>
+                            <circle cx="0" cy="16" r="4" 
+                                    fill="url(#goldGradient)" 
+                                    opacity="0.3"/>
+                            
+                            <circle cx="0" cy="8" r="2.5" 
+                                    fill="url(#silhouetteGrad)"/>
+                            
+                            <path d="M 0,8 L 28,4 L 30,5 L 2,9 Z" 
+                                  fill="url(#silhouetteGrad)"/>
+                            <path d="M 0,8 L 28,12 L 30,11 L 2,7 Z" 
+                                  fill="url(#silhouetteGrad)"/>
+                            
+                            <line x1="0" y1="8" x2="30" y2="5" 
+                                  stroke="#f4e4c1" 
+                                  stroke-width="0.5" 
+                                  opacity="0.6"/>
+                            <line x1="0" y1="8" x2="30" y2="11" 
+                                  stroke="#f4e4c1" 
+                                  stroke-width="0.5" 
+                                  opacity="0.6"/>
+                        </g>
+
+                        <!-- Flowing accent -->
+                        <path d="M -25,52 Q -15,58 0,60 Q 15,61 30,59 Q 42,56 50,50" 
+                              fill="none" 
+                              stroke="url(#goldGradient)" 
+                              stroke-width="1.5"
+                              stroke-linecap="round"
+                              opacity="0.4"
+                              stroke-dasharray="2,3"/>
+                    </g>
+
+                    <!-- Divider line -->
+                    <line x1="80" y1="240" x2="320" y2="240" 
+                          stroke="url(#goldGradient)" 
+                          stroke-width="1" 
+                          opacity="0.4"/>
+
+                    <!-- Text -->
+                    <text x="200" y="285" 
+                          font-family="'Cinzel', serif" 
+                          font-size="54" 
+                          font-weight="700" 
+                          fill="url(#goldGradient)" 
+                          text-anchor="middle" 
+                          letter-spacing="6"
+                          filter="url(#glow)">
+                        SBD
+                    </text>
+
+                    <line x1="120" y1="298" x2="280" y2="298" 
+                          stroke="url(#goldGradient)" 
+                          stroke-width="0.5" 
+                          opacity="0.5"/>
+
+                    <text x="200" y="325" 
+                          font-family="'Cormorant Garamond', serif" 
+                          font-size="22" 
+                          font-weight="300" 
+                          font-style="italic" 
+                          fill="#e0e0e0" 
+                          text-anchor="middle" 
+                          letter-spacing="3">
+                        Styledbydera
+                    </text>
+
+                    <text x="200" y="348" 
+                          font-family="'Montserrat', sans-serif" 
+                          font-size="10" 
+                          font-weight="300" 
+                          fill="#999999" 
+                          text-anchor="middle" 
+                          letter-spacing="2.5">
+                        WIG STYLING ATELIER
+                    </text>
+                </svg>
+            </div>
+
+            <!-- Brand Name -->
+            <h1 class="brand-name">STYLED BY DERA</h1>
+            
+            <div class="divider"></div>
+            
+            <p class="tagline">Where Art Meets Elegance</p>
+            <p class="subtitle">Luxury Wig Styling Experience</p>
+
+           
+        </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="scroll-indicator">
+        <div class="scroll-line"></div>
+        <p class="scroll-text">Discover More</p>
+    </div>
+
+    <script>
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        const follower = document.querySelector('.cursor-follower');
+        let mouseX = 0, mouseY = 0;
+        let followerX = 0, followerY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            cursor.style.left = mouseX + 'px';
+            cursor.style.top = mouseY + 'px';
+        });
+
+        function animateFollower() {
+            followerX += (mouseX - followerX) * 0.1;
+            followerY += (mouseY - followerY) * 0.1;
+            follower.style.left = followerX + 'px';
+            follower.style.top = followerY + 'px';
+            requestAnimationFrame(animateFollower);
+        }
+        animateFollower();
+
+        // Cursor hover effect
+        const interactiveElements = document.querySelectorAll('.feature-card, .logo-svg');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+
+        // Particle Generation
+        const particlesContainer = document.getElementById('particles');
+        function createParticle() {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            particlesContainer.appendChild(particle);
+
+            setTimeout(() => particle.remove(), 25000);
+        }
+
+        for (let i = 0; i < 30; i++) {
+            setTimeout(createParticle, i * 500);
+        }
+        setInterval(createParticle, 2000);
+
+        // Logo hover interactions
+        const logoSvg = document.querySelector('.logo-svg');
+        const hairStrands = document.querySelectorAll('.hair-strand');
+        
+        logoSvg.addEventListener('mouseenter', () => {
+            hairStrands.forEach((strand, index) => {
+                setTimeout(() => {
+                    strand.style.animation = `drawStrand 1s ease-out forwards`;
+                }, index * 100);
+            });
+        });
+
+        // Parallax effect on mouse move
+        const logoContainer = document.querySelector('.logo-container');
+        document.addEventListener('mousemove', (e) => {
+            const x = (e.clientX / window.innerWidth - 0.5) * 20;
+            const y = (e.clientY / window.innerHeight - 0.5) * 20;
+            logoContainer.style.transform = `translate(${x}px, ${y}px)`;
+        });
+
+        // Feature cards stagger animation on scroll
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = 'slideUp 0.8s ease-out forwards';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.animationDelay = `${index * 0.2}s`;
+            observer.observe(card);
+        });
+
+        // Interactive scissors rotation on hover
+        const scissors = document.querySelector('.scissors');
+        let isHovering = false;
+
+        logoSvg.addEventListener('mouseenter', () => {
+            isHovering = true;
+            animateScissors();
+        });
+
+        logoSvg.addEventListener('mouseleave', () => {
+            isHovering = false;
+        });
+
+        function animateScissors() {
+            if (!isHovering) return;
+            
+            const currentRotation = -35;
+            const newRotation = currentRotation + (Math.random() * 6 - 3);
+            scissors.style.transform = `translate(20px, -18px) rotate(${newRotation}deg)`;
+            
+            setTimeout(animateScissors, 100);
+        }
+    </script>
+</body>
+</html>

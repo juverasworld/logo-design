@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WONDR - Crafting Dreams</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+    <style>
+      :root {
+    --primary-brown: #432818;
+    --accent-orange: #bb6b39;
+    --bg-peach: #e29578;
+    --text-white: #ffffff;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--primary-brown);
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.hero-container {
+    width: 90%;
+    max-width: 1200px;
+    height: 80vh;
+    display: flex;
+    position: relative;
+}
+
+/* Sidebar Styling */
+.social-sidebar {
+    width: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    color: var(--text-white);
+}
+
+/* Glassmorphism Card */
+.glass-card {
+    flex: 1;
+    background: linear-gradient(135deg, var(--bg-peach) 30%, transparent 100%),
+                url('your-pottery-image.jpg'); /* Background image here */
+    background-size: cover;
+    background-position: center;
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 50px;
+    align-items: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-white);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+/* Hero Text Area */
+.hero-body {
+    padding: 50px;
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.text-content {
+    max-width: 450px;
+}
+
+.text-content h3 {
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.text-content h1 {
+    font-size: 4rem;
+    margin-top: 0;
+    line-height: 0.9;
+    text-transform: uppercase;
+}
+
+.text-content h1 span {
+    font-family: 'Playfair Display', serif;
+    text-transform: lowercase;
+    display: block;
+    margin-top: -10px;
+}
+
+.cta-button {
+    background: var(--primary-brown);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.play-icon {
+    background: var(--bg-peach);
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.6rem;
+}
+    </style>
+</head>
+<body>
+
+    <main class="hero-container">
+        <aside class="social-sidebar">
+            <div class="dots-nav">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <div class="social-icons">
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-twitter"></i>
+                <i class="fab fa-whatsapp"></i>
+            </div>
+        </aside>
+
+        <section class="glass-card">
+            <nav class="navbar">
+                <div class="logo">
+                    <span class="logo-icon">W</span>
+                    <span class="logo-text">WONDR<br><small>ARTS & HANDCRAFT</small></span>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#">HOME</a></li>
+                    <li><a href="#">TUTORIALS</a></li>
+                    <li><a href="#">GALLERY</a></li>
+                    <li><a href="#">CONTACT</a></li>
+                </ul>
+                <div class="search-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+            </nav>
+
+            <div class="hero-body">
+                <div class="text-content">
+                    <h3>WE ARE</h3>
+                    <h1>CRAFTING <span>dreams</span></h1>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida.</p>
+                    
+                    <button class="cta-button">
+                        DISCOVER NOW 
+                        <span class="play-icon">▶</span>
+                    </button>
+                </div>
+                
+                <div class="image-section">
+                  <img src="/" alt="">
+                    </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>
